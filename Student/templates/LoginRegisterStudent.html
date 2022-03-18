@@ -1,0 +1,64 @@
+{% extends 'Base/BaseTemplate.html' %}
+{% load static %}
+{% block Title %}
+    login - register
+{% endblock %}
+
+{% block Css %}
+    <link rel="stylesheet" href="{% static 'css/Student/LoginRegister/index.css' %}">
+{% endblock %}
+
+{% block Content %}
+    <div class="row align-items-center align-content-center" id="LoginRegister">
+        <form action="" class="bg-white p-3 col-xl-3 col-lg-5 col-md-6 col-sm-10 mx-auto login" id="form">
+            <div>
+                <ul class="nav bg-white rounded-top">
+                    <li class="nav-item">
+                        <a class="nav-link act" href="#" id="Login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="Register">Register</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="" id="loginForm">
+                <h2 class="text-center fw-normal mb-4 mt-3">Login Form</h2>
+                <div class="mb-1">
+                    <label for="UserNameLogin" class="form-label">User Name</label>
+                    <input type="text" InputLogin TypeInp="UserName" class="form-control rounded-0" id="UserNameLogin"
+                           placeholder="UserName">
+                </div>
+                <div class="mb-3">
+                    <label for="Password" class="form-label">Password</label>
+                    <input type="password" InputLogin TypeInp="Password" class="form-control rounded-0" id="Password"
+                           placeholder="Password">
+                    <a href="" class="text-decoration-none">Forgot Password?</a>
+                </div>
+                <button type="button" class="btn w-100 rounded-0 border-0 mt-3" id="sub-l">Login</button>
+            </div>
+            <div class="d-none" id="registerForm">
+                <h2 class="text-center fw-normal mb-4 mt-3">Register Form</h2>
+                <div class="mb-1">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" InputRegister TypeInp="Email" class="form-control rounded-0" id="emailR"
+                           placeholder="name@example.com">
+                </div>
+                <div class="mb-1">
+                    <label for="Username" class="form-label">Username</label>
+                    <input type="text" InputRegister TypeInp="UserName" class="form-control rounded-0" id="Username"
+                           placeholder="UserName">
+                </div>
+                <div class="mb-3">
+                    <label for="Password" class="form-label">Password</label>
+                    <input type="password" InputRegister TypeInp="Password" class="form-control rounded-0"
+                           id="PasswordR" placeholder="Password">
+                </div>
+                <button class="btn w-100 rounded-0 border-0 mt-3" id="sub-R" type="button">Register</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block Js %}
+    <script src="{% static 'js/Student/LoginRegister/index.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,66 @@
+body {
+    background-color: #f8f9fa !important;
+}
+
+.nav-link:hover {
+    color: #eee;
+}
+
+.card {
+    transition: all 0.3s linear;
+}
+
+.card:hover {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+.act {
+    border-bottom: 3px solid #754ffe !important;
+
+}
+
+main {
+    top: -55px;
+}
+
+aside {
+    top: -200px;
+}
+
+#LoginRegister {
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(to right, #4fe4fe, #754ffe);
+}
+
+#sub-l {
+    background-image: linear-gradient(to right, #4fe4fe, #924ffe);
+}
+
+#sub-R {
+    background-image: linear-gradient(to right, #4fe4fe, #924ffe);
+}
+
+#searchInput {
+    transition: all 0.3s linear;
+    /*width: 200%!important;*/
+    width: 100% !important;
+}
+
+@media (min-width: 992px) {
+    #searchInput:focus {
+        width: 400px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .ContainerAside, .ContainerMain {
+        position: absolute !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .ContainerAside, .ContainerMain {
+        position: static !important;
+    }
+}

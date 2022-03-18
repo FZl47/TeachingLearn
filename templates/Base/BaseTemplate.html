@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'image/ImageDefault/Icon.jpg' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 , user-scalable=no">
+    <link rel="stylesheet" href="{% static 'Base/BootStrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'Base/BootStrap/css/bootstrap.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'Base/Css/Base/Base/Index.css' %}">
+    <link rel="stylesheet" href="{% static 'Base/Css/Base/Footer/index.css' %}">
+    <link rel="stylesheet" href="/static/Base/Css/Base/Header/index.css">
+    <link rel="stylesheet" href="/static/Base/Css/Base/Base/animation.css">
+    <script src="{% static 'Base/BootStrap/js/src/jquery.slim.min.js' %}"></script>
+    <script src="{% static 'Base/BootStrap/popper.min.js' %}"></script>
+    <script src="{% static 'Base/BootStrap/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'Base/BootStrap/js/src/bootstrap.min.js' %}"></script>
+    <script src="{% static 'Base/BootStrap/anime.min.js' %}"></script>
+    <script src="{% static 'Base/BootStrap/bootstrap-slider.min.js' %}"></script>
+    <script src="{% static 'Base/jq/jq.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'Base/FontAwesome/css/all.css' %}">
+    {% block Head %}
+    {% endblock %}
+    <title>
+        {% block Title %}
+        {% endblock %}
+    </title>
+    {% block Css %}
+    {% endblock %}
+</head>
+<body>
+{% block Content %}
+{% endblock %}
+<script src="{% static 'Base/Js/Base/Index.js' %}"></script>
+{% block Js %}
+{% endblock %}
+</body>
+</html>

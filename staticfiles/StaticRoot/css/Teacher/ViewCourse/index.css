@@ -1,0 +1,1061 @@
+
+body {
+    background: rgba(231, 246, 246, 0.8);
+    text-align: right;
+    position: relative;
+    z-index: -3;
+}
+
+
+[src="__None__"] {
+    display: none !important;
+}
+
+.Label {
+    font-size: 83%;
+    color: #858585;
+    width: 100px;
+}
+
+.Course {
+    padding: 10px;
+    padding-bottom: 70px;
+    display: flex;
+    justify-content: space-between;
+    width: 99%;
+    background: #fafafa;
+    box-shadow: 0 10px 15px rgba(221, 221, 221, 0.6);
+    margin: 10px auto;
+    border-radius: 20px;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+}
+
+.SectionVid, .Charts, .Comments {
+    padding: 10px;
+    background: white;
+    width: 89%;
+    margin: 50px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(221, 221, 221, 0.6);
+    position: relative;
+    z-index: -1;
+}
+
+
+.ChartsFinancialStatistics, .ChartsVisitCourse {
+    margin: auto;
+    margin-top: 40px;
+    width: 95%;
+}
+
+
+.ChartsFinancialStatistics .ContainerTitle {
+    background: rgb(246, 253, 253);
+    font-size: 90%;
+    border-radius: 5px;
+}
+
+.ChartsVisitCourse .ContainerTitle {
+    background: rgb(246, 253, 253);
+    font-size: 90%;
+    border-radius: 5px;
+}
+
+.ChartsFinancialStatistics .ContainerTitle p {
+    padding: 7px;
+}
+
+.ChartsVisitCourse .ContainerTitle p {
+    padding: 7px;
+}
+
+
+.ContainerCharts {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 50px;
+    width: 98%;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.ContainerCharts > div {
+    text-align: center;
+    width: 400px;
+    padding: 5px;
+    border-radius: 7px;
+    box-shadow: 0 2px 20px rgba(221, 221, 221, 0.3);
+}
+
+.ChartsFinancialStatistics .ContainerCharts > div {
+    text-align: center;
+    width: 550px;
+    padding: 5px;
+    border-radius: 7px;
+    box-shadow: 0 2px 20px rgba(221, 221, 221, 0.3);
+}
+
+.ChartsFinancialStatistics .ContainerCharts {
+    background: linear-gradient(140deg, rgba(255, 231, 242, 0.1), rgba(255, 231, 242, 0.3));
+    justify-content: space-evenly;
+}
+
+.ChartsFinancialStatistics .ContainerCharts > div {
+    background: rgb(193, 255, 223);
+    border: 1px solid rgba(139, 225, 166, 0.1);
+}
+
+.ChartsVisitCourse .ContainerCharts {
+    justify-content: space-between;
+}
+
+.ChartsVisitCourse .ContainerCharts {
+    background: linear-gradient(140deg, rgba(225, 255, 253, 0.3), rgba(213, 253, 255, 0.1));
+    justify-content: space-evenly;
+}
+
+.ChartsVisitCourse .ContainerCharts > div {
+    background: rgb(255, 222, 216);
+    border: 1px solid rgba(255, 176, 149, 0.1);
+}
+
+.InfoChartStateCourse {
+    color: #888888;
+    font-weight: bold;
+}
+
+.ValueAllCharts {
+    text-align: right;
+    margin: 20px;
+}
+
+.ValueAllCharts > div {
+    background: #ff6c7b;
+    box-shadow: inset 2px 2px 5px #ff5d65, 2px 2px 10px rgba(255, 108, 123, 0.3);
+    display: inline-block;
+    padding: 10px;
+    border-radius: 60px;
+    position: relative;
+}
+
+.ValueAllCharts > div::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgb(255, 204, 207);
+    z-index: -1;
+    border-radius: inherit;
+    transform: rotateZ(-6deg);
+
+}
+
+.ValueAllCharts p {
+    margin: 0;
+    display: inline-block;
+    color: white;
+    padding: 1px;
+    width: auto;
+}
+
+
+.ImageCourseAndEdit {
+    width: 32%;
+}
+
+.ImageCourseAndEdit img {
+    width: 100%;
+    height: 450px;
+    border-radius: 10px;
+}
+
+.ImageCourseAndEdit * {
+    vertical-align: top;
+}
+
+.StateCourse {
+    float: left;
+}
+
+.ItemCourse {
+    display: inline-block;
+    margin-bottom: 10px;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    border-radius: 25%;
+    padding: 8px;
+    font-size: 110%;
+}
+
+.ItemCourse:hover {
+    font-weight: bold;
+}
+
+i[Edit] {
+    background: #ebfffc;
+    border: 1px solid rgba(84, 210, 163, 0.3);
+    color: #54d2a3;
+}
+
+i[Trash] {
+    background: #ffeced;
+    border: 1px solid rgba(255, 121, 120, 0.3);
+    color: #ff7978;
+}
+
+i[Percent] {
+    padding: 9px;
+    padding-right: 10px;
+    background: #e0f8ff;
+    border: 1px solid rgba(54, 161, 255, 0.3);
+    color: #36a1ff;
+}
+
+.InfoCourse {
+    width: 66%;
+}
+
+.ContainerTitle {
+    border-left: 4px solid #95dde6;
+    padding-left: 10px;
+    text-align: left;
+}
+
+.ContainerTitle p {
+    font-size: 150%;
+}
+
+.ContainerItemInfo {
+    margin-top: 30px;
+    margin-left: 40px;
+}
+
+.ItemInfo {
+    text-align: left;
+    margin: 15px 0;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #fdedef;
+}
+
+.ItemInfo:last-of-type {
+    border: none;
+}
+
+.CreateSectionCourse {
+    text-align: right;
+    margin-top: 20px;
+    direction: rtl;
+}
+
+.CreateSectionCourse div {
+    cursor: pointer;
+    text-align: center;
+    border-radius: 3px;
+    background: #63dcc3;
+    color: #ffffff;
+    width: 170px;
+    padding: 10px 0;
+    margin-top: 40px;
+    margin-bottom: 5px;
+    font-size: 90%;
+    transition: all .15s;
+}
+
+.CreateSectionCourse div:hover {
+    background: #62d1b8;
+}
+
+.CreateSectionCourse i {
+    font-size: 130%;
+    vertical-align: middle;
+    margin-left: 5px;
+    transition: all .15s;
+}
+
+.CreateSectionCourse div:hover i {
+    transform: rotate(90deg);
+}
+
+
+.SectionCourse {
+    margin: 7px 12px;
+}
+
+.ContainerBtnItemCollapse {
+    background: #ecf8ff;
+    border-bottom: 1px solid #bcdadf;
+    color: #3975df;
+    padding: 10px;
+    border-radius: 7px;
+    text-align: center;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.CollapseBtn {
+    cursor: pointer;
+    width: 80%;
+    margin-left: 5px;
+    text-align: left;
+}
+
+
+.SectionCourseItem > div * {
+    display: inline-block;
+}
+
+.SectionCourseItem > div p {
+    margin: 0;
+    font-size: 90%;
+    margin-left: -3px;
+}
+
+.SectionCourseItem > div div:first-of-type {
+    margin-right: 32px;
+    padding-right: 25px;
+    border-right: 2px dashed #fdc1db;
+}
+
+.SectionCourseItem > div div:first-of-type i {
+    font-size: 100%;
+    cursor: default;
+}
+
+.SectionCourseItem i {
+    font-size: 110%;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.SectionCourseItem i:hover {
+    font-weight: bold;
+}
+
+.CollapseBtn p {
+    margin: 0;
+}
+
+.CollapseContainer {
+    background: #fdf4f6;
+    border: 1px solid rgba(253, 139, 146, 0.2);
+    border-radius: 2px;
+}
+
+.Videos {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.Video {
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 7px 10px;
+    border: 1px dashed rgba(154, 154, 154, 0.6);
+}
+
+.LinkVideo {
+    display: flex;
+    justify-content: space-between;
+    width: 92%;
+}
+
+.LinkVideo p {
+    display: inline-block;
+    margin: 0;
+    font-size: 95%;
+    color: #888888;
+}
+
+.LinkVideo .fa-clock {
+    animation: AnimationClockRotate 10s infinite;
+    color: #888888;
+}
+
+.LinkVideo .fa-hourglass {
+    color: #888888;
+}
+
+.LinkVideo > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ContainerTimeDurationVideo {
+    width: 100px;
+    font-size: 95%;
+    margin-right: 5px;
+}
+
+.ContainerTimePastSubmitVideo {
+    width: 110px;
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 2px dashed #cddafd;
+    font-size: 90%;
+    text-align: center;
+}
+
+
+.ItemVideo {
+    width: 6%;
+    padding-left: 10px;
+    border-left: 2px dashed #cddafd;
+    text-align: center;
+}
+
+.ItemVideo i {
+    padding: 4px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.ItemVideo i:hover {
+    font-weight: bold;
+}
+
+.ContainerAddVideoInSection {
+    text-align: right;
+    direction: rtl;
+}
+
+.ContainerAddVideoInSection div {
+    cursor: pointer;
+    background: #63dcc3;
+    color: #ffffff;
+    width: 120px;
+    text-align: center;
+    margin: 5px;
+    padding: 7px 5px;
+    border-radius: 3px;
+}
+
+.ContainerAddVideoInSection p {
+    margin: 0;
+}
+
+.TextAddVideoInSection {
+    font-size: 90%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 15px;
+    text-align: left;
+    margin: 30px 0 15px 33px;
+}
+
+.ContainerAddVideoInSection div:hover {
+    background: #63d7be;
+}
+
+.ContainerAddVideoInSection div:hover i {
+    font-weight: bold;
+}
+
+
+.ContainerFormCreateSectionCourse {
+    width: 100%;
+}
+
+.ContainerFormCreateSectionCourse .ItemFormInput {
+    background: #ffffff;
+}
+
+.ContainerButtonForm {
+    text-align: right;
+}
+
+.ContainerButtonForm button {
+    margin: 5px 10px;
+}
+
+
+.ContainerUploadingVideoMessage > div {
+    margin: 20px 0;
+    background: #fffac1;
+    border: 1px solid #ffd865;
+    color: #8e8c02;
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 10px;
+    border-radius: 4px;
+}
+
+.ContainerUploadingVideoMessage p {
+    margin: 0;
+    display: inline-block;
+}
+
+.TextPleaseWait {
+    font-size: 105%;
+}
+
+
+.ContainerUploadingVideoMessage i {
+    font-size: 140%;
+    vertical-align: middle;
+    margin-left: 3px;
+}
+
+
+.ContainerUploadingVideoMessage img {
+    width: 350px;
+    height: 200px;
+    display: block;
+    margin: auto;
+    position: relative;
+    border-radius: 50% / 10%;
+    color: white;
+    text-align: center;
+    text-indent: .1em;
+}
+
+.ContainerUploadingVideoMessage img:before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    right: -5%;
+    left: -5%;
+    background: inherit;
+    border-radius: 5% / 50%;
+}
+
+
+.ContainerEditCourse {
+    padding: 5px;
+    top: 3%;
+}
+
+.ContainerEditCourse .ItemFormInput {
+    background: #f7f7f7;
+}
+
+.ContainerImageFormSubmitCourse {
+    direction: rtl;
+    margin: 10px auto;
+    width: 80%;
+}
+
+#ImageForSubmitCourse {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    border: 1px solid #eeeeee;
+    display: block;
+}
+
+.PriceSubmitCourse {
+    font-size: 85%;
+    color: #666666;
+    width: 80%;
+    margin: 10px auto;
+    text-align: left;
+}
+
+.PriceSubmitCourse p {
+    display: inline-block;
+    direction: ltr;
+}
+
+
+.ContainerPriceAddDiscount {
+    margin: 15px auto;
+    padding: 10px;
+    background: #fdf4f7;
+    border: #fdbce6 1px dashed;
+    text-align: left;
+    width: 90%;
+    border-radius: 5px;
+}
+
+.ContainerPriceAddDiscount .Label {
+    width: 90px;
+}
+
+.ContainerPriceAddDiscount p {
+    display: inline-block;
+    margin: 0;
+}
+
+.PriceWithoutDiscount {
+    text-decoration: line-through;
+    font-size: 93%;
+}
+
+.PriceWithDiscount {
+    font-weight: bold;
+    font-size: 105%;
+}
+
+.ContainerDiscountInfo {
+    background: rgba(254, 231, 255, 0.61);
+    display: inline-block;
+    margin: 0 10px;
+    width: 250px;
+    padding: 5px;
+    padding-bottom: 0;
+    border-radius: 4px;
+    border: 1px dashed #ff625d;
+    margin-bottom: 10px;
+}
+
+.ContainerDiscountInfo p {
+    margin: 0;
+}
+
+.ContainerDiscountInfo > div > p {
+    font-size: 75%;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #bbbbbb;
+    color: #666666;
+}
+
+.ContainerDiscountInfo > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.ContainerDiscountInfo > div > div span {
+    vertical-align: middle;
+    font-size: 85%;
+    color: #555555;
+}
+
+.ContainerDiscountInfo > div > div i {
+    vertical-align: middle;
+    animation: AnimationClockRotate 10s infinite;
+}
+
+.ContainerDiscountInfo .fa-trash {
+    font-size: 85%;
+    color: rgb(255, 67, 77);
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.ContainerDiscountInfo .badge-success {
+    background: white;
+    color: #0da37f;
+    border: 1px solid rgba(13, 163, 127, 0.3);
+
+    margin-top: 3px;
+}
+
+
+@keyframes AnimationClockRotate {
+    0% {
+        transform: rotate(0);
+    }
+    40% {
+        transform: rotate(360deg);
+    }
+    40.1% {
+        transform: rotate(0);
+    }
+}
+
+.Comments {
+    width: 80%;
+}
+
+.ContainerBtnSwitchContainerComments {
+    text-align: center;
+    display: flex;
+    width: 400px;
+    margin: auto;
+    justify-content: space-between;
+    border: 1px solid #f2f2f2;
+    border-radius: 15px;
+    padding: 3px;
+    background: #f2f2f2;
+}
+
+.BtnSwitchActive {
+    border: 2px solid rgba(16, 163, 111, 0.6) !important;
+    border-radius: 10px !important;
+    background: white;
+    color: #444444 !important;
+}
+
+.BtnSwitchActive i {
+    color: #3d8ddb;
+}
+
+
+.ContainerBtnSwitchContainerComments > div {
+    color: #888888;
+    width: 50%;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.ContainerBtnSwitchContainerComments .Small {
+    font-size: 70%;
+}
+
+.ContainerBtnSwitchContainerComments i {
+    transition: all .15s;
+}
+
+.ContainerBtnSwitchContainerComments > div:hover i {
+    font-size: 115%;
+    transform: translateY(-1px);
+}
+
+.ContainerBtnSwitchContainerComments > div:first-of-type {
+    border-radius: 15px 0 0 15px;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.ContainerBtnSwitchContainerComments > div:last-of-type {
+    border-radius: 0 15px 15px 0;
+}
+
+.ContainerBtnSwitchContainerComments p {
+    display: inline-block;
+    margin: 0;
+}
+
+.ContainerNewComments, .ContainerAllComments {
+    transform: translateY(-20px);
+    opacity: .5;
+    animation: AnimationShowContainerComments .8s forwards;
+}
+
+@keyframes AnimationShowContainerComments {
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.Comment {
+    background: rgba(246, 241, 236, 0.7);
+    margin: 20px;
+    padding: 5px;
+    text-align: left;
+    border-radius: 6px;
+    box-shadow: 0 3px 10px rgba(232, 232, 232, 0.3);
+    border: 1px solid #f2f2f2;
+    border-bottom: 1px solid #dddddd;
+}
+
+.Comment p {
+    display: inline-block;
+    margin: 0;
+}
+
+.InfoComment {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+    direction: ltr;
+}
+
+.InfoComment > p {
+    color: #666666;
+    font-size: 85%;
+}
+
+.ItemsComment {
+    margin-left: 4px;
+    display: inline-block;
+}
+
+.ItemsComment i {
+    padding: 5px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.ItemsComment i:hover {
+    font-weight: bold;
+}
+
+.TextComment {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    margin: 4px 40px;
+    font-size: 97%;
+    border-radius: 5px;
+}
+
+.Comments .CollapseBtn {
+    font-size: 95%;
+    width: 100px;
+    margin: 10px;
+    margin-top: 20px;
+    color: #309fb3;
+    padding: 7px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(221, 221, 221, 0.3);
+}
+
+.Comments .CollapseBtn:hover i {
+    font-weight: bold;
+}
+
+.Comments .CollapseBtn i {
+    font-size: 110%;
+    padding-top: 3px;
+}
+
+.ContainerAnswerComment {
+    width: 65%;
+    padding: 3px;
+    text-align: right;
+    margin: 10px auto;
+    direction: ltr;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    position: relative;
+    background: rgba(242, 238, 255, 0.2);
+}
+
+.ContainerAnswerComment textarea {
+    width: 80%;
+    height: 50px;
+    margin: 5px auto;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.ContainerAnswerComment .Label {
+    width: auto;
+    color: #1b1b1b;
+    padding: 8px;
+}
+
+.ContainerAnswerComment button {
+    border: none;
+    outline: none;
+    margin: 10px;
+    padding: 7px 20px;
+    background: #1cb385;
+    color: rgba(255, 255, 255, 1);
+    border-radius: 7px;
+}
+
+.ContainerAnswerComment button:active {
+    box-shadow: inset 3px 3px 5px #149242;
+}
+
+.ContainerAnsweredComment {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 5px;
+    width: 95%;
+    border-radius: 7px;
+    border: 1px solid #cccccc;
+    direction: ltr;
+}
+
+.ContainerAnsweredComment .ItemsAnswerComment {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ContainerAnsweredComment .ItemsAnswerComment i {
+    padding: 5px;
+    border-radius: 7px;
+    font-size: 95%;
+    cursor: pointer;
+}
+
+.TimePastSubmitAnswerComment {
+    font-size: 70%;
+    color: #555555;
+}
+
+.ContainerAnsweredComment .TextAnswerComment {
+    text-align: left;
+    color: #444444;
+    padding: 7px;
+    word-break: break-all;
+    width: 100%;
+}
+
+@media screen and (max-width: 1580px) {
+    .ChartsFinancialStatistics .ContainerCharts > div {
+        width: 48%;
+        height: auto;
+        margin: 10px;
+    }
+
+    .ChartsVisitCourse .ContainerCharts > div {
+        width: 32%;
+        height: auto;
+        margin: 4px;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .ImageCourseAndEdit {
+        width: 37%;
+    }
+
+    .InfoCourse {
+        width: 63%;
+    }
+}
+
+@media screen and (max-width: 1020px) {
+
+    .CollapseBtn {
+        width: auto;
+    }
+
+    .SectionCourseItem > div {
+        text-align: right;
+    }
+
+    .SectionCourseItem > div div {
+        padding: 5px !important;
+        width: auto;
+        margin: 0 !important;
+    }
+
+    .InfoCourse {
+        width: 92%;
+    }
+
+    .ImageCourseAndEdit {
+        width: 40px;
+        text-align: center;
+    }
+
+    .ImageCourseAndEdit i {
+        margin: 4px 0;
+    }
+
+    .ContainerItemInfo {
+        margin-top: 280px;
+    }
+
+    .ImageCourseAndEdit img {
+        position: absolute;
+        width: 70%;
+        height: 150px;
+        left: 15%;
+        top: 150px;
+        border-radius: 20px;
+    }
+
+    .ContainerDiscountInfo {
+        width: 80%;
+        position: absolute;
+        left: 10px;
+        top: 65px;
+    }
+
+
+    .ItemVideo {
+        text-align: right;
+        width: 35px;
+        padding: 0;
+        padding-left: 2px;
+        font-size: 97%;
+    }
+
+    .ContainerTimePastSubmitVideo, .ContainerTimeDurationVideo {
+        font-size: 80%;
+    }
+
+    .ContainerCharts > div {
+        width: 80% !important;
+        height: auto !important;
+        margin: 20px auto !important;
+        display: block;
+    }
+
+    .ContainerCharts {
+        overflow: auto;
+        display: block;
+    }
+
+    .ContainerAnswerComment {
+        width: 90%;
+    }
+
+}
+
+@media screen and (max-width: 500px ) {
+    .Course {
+        margin: 0;
+        box-shadow: 0 5px 20px rgba(204, 204, 204, 0.5);
+        width: 100%;
+    }
+
+    .Charts, .SectionVid, .Comments {
+        width: 100%;
+    }
+
+    .ContainerCharts {
+        width: 100% !important;
+    }
+
+    .ContainerCharts > div {
+        width: 98% !important;
+        height: auto !important;
+        margin: 20px auto !important;
+        display: block;
+    }
+
+    .Video {
+        display: block;
+        padding: 7px;
+    }
+
+    .LinkVideo {
+        width: 100%;
+    }
+
+    .ContainerTimePastSubmitVideo, .ContainerTimeDurationVideo {
+        font-size: 75%;
+        margin: 0 5px !important;
+        padding: 0 !important;
+        border: none;
+        width: auto;
+    }
+
+    .ItemVideo {
+        text-align: right;
+        border: none;
+        width: 100%;
+    }
+
+    .ContainerBtnSwitchContainerComments {
+        width: 95%;
+        font-size: 97%;
+    }
+
+    .Comment:first-child {
+        margin-top: 25px;
+        box-shadow: 0 -4px 10px #cccccc;
+    }
+
+    .Comment {
+        width: 100%;
+        margin: 15px 0;
+        font-size: 98%;
+    }
+    
+    .Label{
+        width:95px;
+    }
+}

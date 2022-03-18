@@ -1,0 +1,287 @@
+{% extends 'Base/BaseTemplate.html' %}
+{% load static %}
+{% load FilterTags %}
+
+{% block Title %}
+    Panel - {{ Student.GetNameAndFamily }}
+{% endblock %}
+
+{% block Css %}
+    <link rel="stylesheet" href="{% static 'css/Student/Panel/index.css' %}">
+{% endblock %}
+
+
+{% block Content %}
+
+    <div class="row">
+        <div class="d-flex flex-column flex-shrink-0 py-3 px-4 bg-light shadow me-lg-3 col-lg-2">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" fill="currentColor" class="bi bi-people"
+                     viewBox="0 0 16 16">
+                    <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+                </svg>
+                <span class="fs-4">{{ Student.GetNameAndFamily }}</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li>
+                    <a href="#" class="nav-link active" id="profile">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                             class="bi bi-speedometer2 mb-1" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z"/>
+                            <path fill-rule="evenodd"
+                                  d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z"/>
+                        </svg>
+                        Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-dark" id="order">
+                        <i class="far fa-shopping-cart"></i>
+                        Orders
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-dark" id="courses">
+                        <i class="far fa-video"></i>
+                        Courses
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-dark" id="signout" ClickFunc="SignOutAccount()">
+                        <i class="far fa-sign-out"></i>
+                        Sign out
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="profileInfo" class="col-lg-9 mx-lg-5 p-5 shadow">
+            <div>
+                <div class="row g-3">
+                    <form action="/s/Panel/InfoSubmit" method="post" class="col-12">
+                        {% csrf_token %}
+                        <div class="col-12">
+                            <label for="firstName" class="form-label">First name</label>
+                            <input type="text" class="form-control rounded-0 border-1 shadow-sm " id="firstName"
+                                   placeholder="" value="{{ Student.FirstName|NoneVal:'' }}" required="required"
+                                   minlength="2"
+                                   maxlength="199" name="FirstName">
+                            <div class="invalid-feedback">
+                                Valid first name is required.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="lastName" class="form-label">Last name</label>
+                            <input type="text" class="form-control rounded-0 border-1 shadow-sm" id="lastName"
+                                   placeholder="" value="{{ Student.LastName|NoneVal:'' }}" required="required"
+                                   minlength="2"
+                                   maxlength="199" name="LastName">
+                            <div class="invalid-feedback">
+                                Valid last name is required.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="lastName" class="form-label">Phone number </label>
+                            <input type="number" class="form-control rounded-0 border-1 shadow-sm" id="PhoneNumber"
+                                   placeholder="+184***43" value="{{ Student.PhoneNumber|NoneVal:'' }}"
+                                   required="required"
+                                   minlength="5" maxlength="14" name="PhoneNumber">
+                            <div class="invalid-feedback">
+                                Valid Phone number is required.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control rounded-0 border-1 shadow-sm" id="email"
+                                   placeholder="you@example.com" minlength="2" maxlength="69" required="required"
+                                   name="Email" value="{{ Student.Email|NoneVal:'' }}">
+                            <div class="invalid-feedback">
+                                Please enter a valid email address.
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="city" class="form-label">City</label>
+                            <input type="text" class="form-control rounded-0 border-1 shadow-sm" id="city"
+                                   placeholder="City" minlength="2" maxlength="29" required="required" name="City"
+                                   value="{{ Student.City|NoneVal:'' }}">
+                            <div class="invalid-feedback">
+                                Please enter your city.
+                            </div>
+                        </div>
+                        <button class="btn btn-primary col-md-2 mt-5" id="btnSubmit">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="orderInfo" class="col-lg-9 mx-lg-5 p-4 shadow d-none">
+            {% if Student.GetCourseOrders|ListIsNone %}
+                <h4 class="text-center">No Content</h4>
+            {% endif %}
+            {% for Order in Student.GetCourseOrders %}
+                {% with Order.Course as Course %}
+                    <div class="course p-3 row shadow-sm">
+                        <img src="{{ Course.Image.url }}" alt="{{ Course.Title }}" class="col-md-4"
+                             style="height: 300px">
+                        <i class="far fa-times" onclick="DeleteCourseInOrder(this.parentNode,'{{ Order.id }}')"></i>
+                        <div class="col-md-6 mx-3">
+                            <h1>{{ Course.Title }}</h1>
+                            <div class="InfoCourse">
+                                <div class="d-flex justify-content-between">
+                                    {% if Course.CourseIsFree %}
+                                        <span class="bold text-success">Free</span>
+                                    {% else %}
+                                        {% if Course.HasDiscount %}
+                                            <div>
+                                                <span style="text-decoration: line-through;font-size: 90%">${{ Course.GetPriceWithoutDiscount }}</span>
+                                                <span class="bold">${{ Course.GetPrice }}</span>
+                                                <span style="font-size: 80%"><sup
+                                                        class="badge badge-danger">{{ Course.GetDiscount.Percent }}%</sup></span>
+                                            </div>
+                                        {% else %}
+                                            <span class="bold" style="font-size: 110%">${{ Course.GetPrice }}</span>
+                                        {% endif %}
+                                    {% endif %}
+                                    <span style="font-size: 80%">
+                                        {{ Order.GetTimePastSubmit }}
+                                    </span>
+                                </div>
+                                <div>
+                                    {% if Course.StateCourse == 'Active' %}
+                                        <div class="badge badge-success">Active</div>
+                                    {% elif Course.StateCourse == 'Completed' %}
+                                        <div class="badge badge-info">Completed</div>
+                                    {% elif Course.StateCourse == 'Pause' %}
+                                        <div class="badge badge-warning">Pause</div>
+                                    {% endif %}
+                                    <br>
+                                    <br>
+                                    <p>
+                                        {{ Course.Description|truncatechars:100 }}
+                                    </p>
+                                    <div class="text-right">
+                                        <button class="btn btn-info" data-bs-toggle="modal"
+                                                data-bs-target="#ModalPurchase_Course_{{ Course.id }}">Purchase
+                                        </button>
+                                    </div>
+                                    <div class="modal fade" id="ModalPurchase_Course_{{ Course.id }}" tabindex="-1"
+                                         aria-labelledby="#ModalPurchase_Course_{{ Course.id }}_Label"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title"
+                                                        id="ModalPurchase_Course_{{ Course.id }}_Label">Purchase
+                                                        Course</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            {% if Course.CourseIsFree %}
+                                                                <span class="bold text-success">Free</span>
+                                                            {% else %}
+                                                                {% if Course.HasDiscount %}
+                                                                    <div>
+                                                                        <span style="text-decoration: line-through;font-size: 90%">${{ Course.GetPriceWithoutDiscount }}</span>
+                                                                        <span class="bold">${{ Course.GetPrice }}</span>
+                                                                        <span style="font-size: 80%"><sup
+                                                                                class="badge badge-danger">{{ Course.GetDiscount.Percent }}%</sup></span>
+                                                                    </div>
+                                                                {% else %}
+                                                                    <span class="bold"
+                                                                          style="font-size: 110%">${{ Course.GetPrice }}</span>
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        </div>
+                                                        <div>
+                                                            <a href="/c/{{ Course.id }}">
+                                                                <p>{{ Course.Title|truncatechars:50 }}</p></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between"
+                                                         style="background: #f7fcff ; box-shadow: 0 2px 9px rgba(221,221,221,0.3);margin: 15px 0;">
+                                                        <div>
+                                                            {% if Course.CourseIsFree %}
+                                                                <strong class="text-success">Free</strong>
+                                                            {% else %}
+                                                                <h5 class="bold">${{ Course.GetPrice }}</h5>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div>
+                                                            <form action="/c/{{ Order.id }}/PaymentCourse"
+                                                                  method="post">
+                                                                {% csrf_token %}
+                                                                <button class="btn btn-success px-5">Pay</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endwith %}
+            {% endfor %}
+        </div>
+
+        <div id="courseInfo" class="col-lg-9 mx-lg-5 p-5 shadow d-none">
+            {% for CoursePayment in Student.GetCoursePayed %}
+                {% with CoursePayment.Course as Course %}
+                    <div class="course p-3 row shadow-sm">
+                        <img src="{{ Course.Image.url }}" alt="{{ Course.Title }}" class="col-md-4"
+                             style="height: 300px">
+                        <div class="col-md-6 mx-3">
+                            <h1>{{ Course.Title }}</h1>
+                            <div class="InfoCourse">
+                                <div class="d-flex justify-content-between">
+                                    <span style="font-size: 80%">
+                                        {{ CoursePayment.GetTimePastSubmit }}
+                                    </span>
+                                </div>
+                                <div>
+                                    {% if Course.StateCourse == 'Active' %}
+                                        <div class="badge badge-success">Active</div>
+                                    {% elif Course.StateCourse == 'Completed' %}
+                                        <div class="badge badge-info">Completed</div>
+                                    {% elif Course.StateCourse == 'Pause' %}
+                                        <div class="badge badge-warning">Pause</div>
+                                    {% endif %}
+                                    <br>
+                                    <br>
+                                    <p>
+                                        {{ Course.Description|truncatechars:100 }}
+                                    </p>
+                                    <div class="text-right">
+                                        <a href="/c/{{ Course.id }}" class="btn btn-info"
+                                               >See Course
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endwith %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block Js %}
+    <script src="{% static 'js/Home/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/Student/Panel/index.js' %}"></script>
+{% endblock %}
+

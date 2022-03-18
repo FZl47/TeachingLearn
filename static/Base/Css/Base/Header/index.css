@@ -1,0 +1,559 @@
+.Header {
+    width: 100%;
+    position: absolute;
+    top: 2px;
+    background: white !important;
+    z-index: 10;
+    padding-bottom: 35px;
+}
+
+.Header[Other] {
+    position: relative;
+    top: 0;
+    border-radius: 0;
+    box-shadow: 0 9px 10px #eeeeee !important;
+    height: 66px;
+    margin-bottom: 40px;
+}
+
+
+.ContainerBtnsHeaderLvl2 {
+    display: inline-block;
+    margin-right: 3%;
+}
+
+.ItemsHeader {
+    padding: 12px 30px;
+}
+
+.ItemHeader {
+    display: inline-block;
+    font-size: 105%;
+    cursor: pointer;
+    padding: 1px;
+}
+
+.ItemHeaderAniIcon {
+    transition: all .2s, color 0s;
+    margin: 0 2px;
+}
+
+.ItemHeaderAniIcon:hover {
+    border-bottom: 1px solid #98c1d9;
+    color: #3d5a80;
+}
+
+
+.ItemHeaderAniIcon:hover i {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ItemHeaderAniIcon:hover p {
+    color: #3d5a80;
+}
+
+.ItemHeaderAniIcon:active i {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ItemHeaderAniIcon p {
+    display: inline-block;
+    color: #222222;
+    margin: 0;
+    padding: 5px;
+}
+
+.ItemHeaderAniIcon i {
+    visibility: hidden;
+    opacity: 0;
+    transition: all .2s, color 0s;
+    font-size: 90%;
+}
+
+.ItemAccount {
+    float: left;
+    margin-top: -3px;
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid rgba(170, 170, 170, 0.5);
+}
+
+.ItemAccount p {
+    display: inline-block;
+    font-size: 60%;
+    width: 40px;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    direction: ltr;
+}
+
+.ItemAccount i {
+    background: #f5f5f5;
+    padding: 8px 10px;
+    border-radius: 50%;
+    font-size: 120%;
+    transition: all .15s;
+    box-shadow: -1px -1px 5px #dddddd;
+    color: #299cb3;
+}
+
+.ItemAccount:hover i {
+    background: #f0f0f0;
+    font-weight: bold;
+}
+
+.ItemLogoHeader {
+    float: left;
+    cursor: default;
+    height: 100%;
+    border-radius: 15px 3px;
+    background: white;
+}
+
+.ItemLogoHeader img {
+    width: 55px;
+}
+
+.IconPhoneCall {
+    transform: rotateZ(100deg);
+    animation: AnimationPhoneCall .2s infinite;
+}
+
+@keyframes AnimationPhoneCall {
+    0% {
+        transform: rotateZ(100deg);
+    }
+    20% {
+        transform: rotateZ(110deg);
+    }
+    40% {
+        transform: rotateZ(115deg);
+    }
+    60% {
+        transform: rotateZ(110deg);
+    }
+    80% {
+        transform: rotateZ(100deg);
+    }
+    100% {
+        transform: rotateZ(95deg);
+    }
+}
+
+.ImageHeaderHome {
+    width: 100%;
+    height: 100vh;
+    filter: invert(30%) brightness(40%);
+    position: relative;
+    left: 0;
+    top: 0;
+}
+
+.Header[Type2] {
+    margin-top: 20px;
+    padding: 10px 30px;
+    background: rgba(118, 118, 118, 0.3);
+    box-shadow: inset 0 -2px 2px rgba(50, 50, 50, 0.7);
+    z-index: 10;
+    border-radius: 25px;
+    position: absolute;
+}
+
+.Header[Type1] {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 -5px 10px rgba(255, 255, 255, 0.1);
+}
+
+
+.Header[Type2] .ItemHeaderAniIcon p {
+    color: #d8d8d8;
+}
+
+.Header[Type2] .ItemHeaderAniIcon {
+    border: none;
+}
+
+.Header[Type2] .ItemHeaderAniIcon:hover p {
+    color: white !important;
+}
+
+.Header[Type2] .ItemHeaderAniIcon:hover i {
+    color: #b5f0ff !important;
+}
+
+.Header[Type2] .ItemAccount p {
+    color: #b5f0ff !important;
+}
+
+.Header[Type2] .ItemLogoHeader img {
+    width: 65px;
+}
+
+.Header[Type3] {
+    box-shadow: none !important;
+    margin: 0!important;
+}
+
+.ContainerBlurOnHeader {
+    width: 100%;
+    height: 100%;
+    background: orange;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(4px);
+}
+
+
+/* Menu */
+
+#ContainerMenuHamburger {
+    position: fixed;
+    right: 0;
+    height: 100%;
+    width: 220px;
+    top: 0;
+    z-index: 1000;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 10px 0 0 10px;
+    background: #F8F5F1;
+}
+
+.IconHamburgerMenu {
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    padding-top: 7px;
+    font-size: 150%;
+    text-align: center;
+    margin: 0;
+    margin-left: 10px;
+    margin-top: 5px;
+    transition: all .15s;
+    box-shadow: none;
+}
+
+.IconHamburgerMenu:hover {
+    background: #f2f2f2;
+    box-shadow: none;
+    transform: scale(.97);
+}
+
+/*.ImageDesignMenuTop {*/
+/*    width: 100%;*/
+/*    height: 150px;*/
+/*    -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 1)));*/
+/*    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));*/
+/*    margin-bottom: 5px;*/
+/*    filter: brightness(80%);*/
+/*    border-radius: 0 0 7px 7px;*/
+/*}*/
+
+/*  New  */
+
+.ContainerHeaderMenu {
+    padding-bottom: 20px;
+    background: #45526C;
+    box-shadow: 0 5px 10px rgba(69, 82, 108, 0.3);
+    border-radius: 0 0 30px 30px;
+    color: #f0f0f0;
+}
+
+.MustSignInAccountHeaderMenu {
+    padding: 5px;
+    border-radius: 0 0 10px 10px;
+    cursor: pointer;
+    margin-bottom: -10px;
+}
+
+.MustSignInAccountHeaderMenu:hover {
+
+}
+
+.MustSignInAccountHeaderMenu p {
+    margin: 0;
+}
+
+.ContainerNameAndLogOutHeaderMenu {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+    font-size: 95%;
+}
+
+.ContainerNameAndLogOutHeaderMenu div p {
+    cursor: pointer;
+}
+
+.ContainerNameAndLogOutHeaderMenu div i {
+    cursor: pointer;
+}
+
+.ContainerNameAndLogOutHeaderMenu div:last-child {
+    font-size: 110%;
+}
+
+.ImageUserHeaderMenu {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.ContainerMainMenu {
+    margin-top: 20px;
+    height: 100%;
+    background: #F8A488;
+    box-shadow: 0 -2px 6px rgba(248, 164, 136, 0.2);
+}
+
+
+/* Past  */
+
+.ItemAccountMenu {
+    width: 100%;
+    float: none;
+    text-align: right;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.ItemAccountMenuSignIn {
+    width: 30%;
+    background: rgb(20, 221, 175);
+    box-shadow: 5px 2px 10px rgba(20, 221, 175, 0.3);
+    color: white;
+    padding: 10px 5px;
+    text-align: center;
+    border-radius: 0 20px 20px 0;
+    backdrop-filter: blur(1px);
+    font-size: 140%;
+    cursor: pointer;
+}
+
+.ImageMemberMenu {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 25px;
+    right: 60px;
+    background: white;
+    border-radius: 50%;
+}
+
+.NameAndFamilyUserMenu {
+    font-size: 100% !important;
+    font-weight: bold;
+    color: white;
+    background: #07c8aa;
+    box-shadow: 2px 2px 10px rgba(7, 200, 170, 0.3);
+    border-radius: 25px 0 0 25px;
+    width: 120px !important;
+    padding: 5px;
+    text-align: right !important;
+}
+
+
+.NameAndFamilyMemberMenu {
+    text-align: center;
+    margin: -25px 0 0 30px;
+    font-size: 90%;
+    font-weight: bold;
+
+}
+
+.ContainerBtnsHeaderLvl2Menu {
+    width: 100%;
+    text-align: right;
+    padding: 0;
+}
+
+.ContainerIconBtnsMenu {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.ContainerIconBtnsMenu .IconBtnMenu {
+    text-align: center;
+    font-size: 85%;
+    padding: 5px 0;
+}
+
+.ItemHeaderMenu {
+    padding: 8px 5px;
+    font-size: 105%;
+    border-bottom: 1px solid rgba(248, 215, 199, 0.4);
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.ItemHeaderMenu:hover {
+    background: #F8F5F1;
+    border: none;
+}
+
+.ItemHeaderMenu:hover * {
+    color: black !important;
+}
+
+.ItemHeaderMenu i {
+    float: left;
+    font-size: 120%;
+    padding-top: 10px;
+}
+
+.TitleGroupHeader {
+    font-size: 115%;
+    transform: translate(0);
+    padding: 0;
+    margin-right: 10px;
+    height: 100%;
+}
+
+.TitleGroup {
+    display: inline-block;
+    margin: 0;
+    font-family: "MjBeirutMd";
+}
+
+.TitleGroup p {
+    display: inline-block;
+    font-size: 180%;
+    margin: 0;
+    font-weight: bold;
+    color: #3172ff;
+}
+
+.ContainerItemsForMobile {
+    display: inline-block;
+}
+
+.ImageDesignIconHamburgerMenu {
+    width: 75px;
+    height: 65px;
+    position: absolute;
+    z-index: -1;
+    right: 0;
+    top: 3px;
+    transform: rotate(-5deg) rotateY(-180deg);
+    filter: brightness(105%);
+}
+
+.ContainerFooterMenu {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px;
+    background: #45526C;
+    box-shadow: 0 -5px 10px rgba(69, 82, 108, 0.2);
+    border-radius: 30px 30px 0 0;
+}
+
+.ContainerContactUsMenu {
+    text-align: center;
+}
+
+.ContainerContactUsMenu i {
+    margin: 3px;
+    font-size: 120%;
+    background: #ededed;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all .1s;
+}
+
+.ContainerContactUsMenu i:hover {
+    box-shadow: none;
+}
+
+.ContainerContactUsMenu i:active {
+    box-shadow: inset 1px 1px 2px #cccccc;
+}
+
+.ContainerContactUsMenu i[Phone] {
+    color: #2c2c2c;
+}
+
+.ContainerContactUsMenu i[Telegram] {
+    color: #214fd4;
+}
+
+.ContainerContactUsMenu i[Instagram] {
+    color: #d44c54;
+}
+
+.ContainerContactUsMenu i[Email] {
+    color: #ee3136;
+}
+
+
+/* Responsive */
+
+@media screen and (min-width: 1002px) {
+    .ContainerItemsForMobile {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1360px) {
+    [SectionMainSubmitProject] {
+        border-radius: 40px !important;
+    }
+}
+
+@media screen and (max-width: 1001px) {
+
+
+    .ItemsHeader .ItemHeader:not(.ItemLogoHeader) {
+        display: none;
+    }
+
+    .ItemHeaderMenu {
+        font-size: 100%;
+    }
+
+    .ItemLogoHeader {
+        margin-top: 8px;
+    }
+
+    .Header {
+        background: white;
+        border-radius: 0;
+        position: relative;
+        top: 0;
+        box-shadow: none !important;
+        height: 66px;
+    }
+
+    .SectionHeader {
+        margin: 0 !important;
+        border-radius: 0 !important;
+    }
+
+
+    .ItemsHeader {
+        padding: 5px 15px;
+    }
+
+    .SectionHeader {
+        background: white;
+        margin-top: 50px;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    [SectionMainSubmitProject] img {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+}

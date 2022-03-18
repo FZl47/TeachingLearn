@@ -1,0 +1,21 @@
+.ContainerFooter {
+    position: relative;
+}
+
+.ContentFooter {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    text-align: center;
+}
+
+.TextCopyRight {
+    font-size: 90%;
+    color: #222222;
+}
+
+.TextCopyRight span {
+    font-weight: bold;
+    color: black;
+}

@@ -1,0 +1,188 @@
+{% load FilterTags %}
+<header class="Header" {{ Style }} {{ Place }}>
+    <div id="ContainerMenuHamburger" class="MenuIsClose">
+        {% with Items|ConvertStringToList_Str as ListItems %}
+            {% if ListItems|SearchInList:'Account' %}
+                {% if User != None %}
+                    {% if User.GetTitleUserModel == 'Member' %}
+                        <div class="ContainerHeaderMenu">
+                            <div class="ContainerNameAndLogOutHeaderMenu">
+                                <div ClickFunc="GoToUrl({{ User.GerSrcPanel }})"><p>{{ User.GetNameAndFamily }}</p>
+                                </div>
+                                <div>
+                                    <i class="far fa-sign-out-alt" onclick="SignOutAccountMenu()"></i>
+                                </div>
+                            </div>
+                            {% if User.Image != '' %}
+                                <img src="{{ User.Image.url }}" alt="{{ User.GetNameAndFamily }}"
+                                     class="ImageUserHeaderMenu" ClickFunc="GoToUrl({{ User.GerSrcPanel }})">
+                            {% else %}
+                                <img src="/Static/Img/Img-Default/ImageDefaultMember.jpg"
+                                     alt="{{ User.GetNameAndFamily }}"
+                                     class="ImageUserHeaderMenu" ClickFunc="GoToUrl({{ User.GerSrcPanel }})">
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        <div class="ContainerHeaderMenu">
+                            <div class="ContainerNameAndLogOutHeaderMenu">
+                                <div ClickFunc="GoToUrl({{ User.GerSrcPanel }})"><p>{{ User.GetNameAndFamily }}</p>
+                                </div>
+                                <div>
+                                    <i class="far fa-sign-out-alt" onclick="SignOutAccountMenu()"></i>
+                                </div>
+                            </div>
+                            <img src="/Static/Img/Img-Logo/IconLogo.jpg" alt="{{ User.GetNameAndFamily }}"
+                                 class="ImageUserHeaderMenu" ClickFunc="GoToUrl({{ User.GerSrcPanel }})">
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <div class="ContainerHeaderMenu MustSignInAccountHeaderMenu">
+                        <div class="ContainerNameAndLogOutHeaderMenu" ClickFunc="GoToUrl(/U/Login-Create)">
+                            <div>
+                                <p>وارد شوید</p>
+                            </div>
+                            <div>
+                                <i class="far fa-sign-in-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+            <div class="ContainerBtnsHeaderLvl2Menu ContainerMainMenu">
+                {% if ListItems|SearchInList:'BtnSubmitProject' %}
+                    <div class="ItemHeaderMenu ItemHeaderAniIcon" onclick="GoToUrl('/U/Profile?ProjectSubmit')">
+                        <p>ثبت پروژه</p>
+                        <i class="far fa-file-plus"></i>
+                    </div>
+                {% endif %}
+                {% if ListItems|SearchInList:'BtnJoinToTeam' %}
+                    <div class="ItemHeaderMenu ItemHeaderAniIcon" onclick="GoToUrl('/M/Login-Create')">
+                        <p>ورود به تیم</p>
+                        <i class="far fa-users-crown"></i>
+                    </div>
+                {% endif %}
+                {% if ListItems|SearchInList:'WorkSamples' %}
+                    <div class="ItemHeaderMenu ItemHeaderAniIcon" onclick="GoToUrl('/Ws')">
+                        <p>نمونه کار ها</p>
+                        <i class="far fa-file-alt"></i>
+                    </div>
+                {% endif %}
+                {% if ListItems|SearchInList:'GroupMembers' %}
+                    <div class="ItemHeaderMenu ItemHeaderAniIcon" onclick="GoToUrl('/Gm')">
+                        <p>اعضای گروه</p>
+                        <i class="far fa-users"></i>
+                    </div>
+                {% endif %}
+                {% if ListItems|SearchInList:'ContactUs' %}
+                    <div class="ItemHeaderMenu ItemHeaderAniIcon" ClickFunc="ShowContactUsHome()">
+                        <p>تماس با ما</p>
+                        <i class="far fa-phone IconPhoneCall"></i>
+                    </div>
+                {% endif %}
+                {% if ListItems|SearchInList:'Home' %}
+                    <div class="ItemHeaderMenu ItemHeaderAniIcon" onclick="GoToUrl('/')">
+                        <p>خانه</p>
+                        <i class="far fa-home"></i>
+                    </div>
+                {% endif %}
+            </div>
+            {#            <div class="ContainerFooterMenu">#}
+            {#                <div class="ContainerContactUsMenu">#}
+            {#                    <div class="ItemsContactUs">#}
+            {#                        <i class="far fa-paper-plane" Telegram></i>#}
+            {#                        <i class="fab fa-instagram" Instagram></i>#}
+            {#                        <i class="far fa-envelope" Email></i>#}
+            {#                        <i class="far fa-phone" Phone></i>#}
+            {#                    </div>#}
+            {#                </div>#}
+            {#            </div>#}
+        {% endwith %}
+    </div>
+    <div class="ItemsHeader">
+        <div class="ContainerItemsForMobile">
+            <img src="/Static/Img/Img-Design/Img-Blobs/Blob_7.jpg" alt="Blob Design"
+                 class="ImageDesignIconHamburgerMenu">
+            <i class="far fa-bars IconHamburgerMenu" id="IconHamburgerMenu"
+               ClickFunc="OpenMenuHamburgerID(ContainerMenuHamburger)"></i>
+            {#            <div class="TitleGroupHeader TitleGroup">#}
+            {#                گروه برنامه نویسی سمیکالن#}
+            {#                <p>;</p>#}
+            {#            </div>#}
+        </div>
+        {% with Items|ConvertStringToList_Str as ListItems %}
+            {% if ListItems|SearchInList:'BtnSubmitProject' %}
+                <div class="ItemHeader ItemHeaderAniIcon BtnStyle_10" AnimationScroll="AnimationBottomToTop"
+                     ClickFunc="GoToUrl(/U/Profile?ProjectSubmit)">
+                    <p>ثبت پروژه</p>
+                </div>
+            {% endif %}
+            {% if ListItems|SearchInList:'BtnJoinToTeam' %}
+                <div class="ItemHeader ItemHeaderAniIcon BtnStyle_10_OutLine" AnimationScroll="AnimationTopToBottom"
+                     ClickFunc="GoToUrl(/M/Login-Create)">
+                    <p>ورود به تیم</p>
+                </div>
+            {% endif %}
+            <div class="ContainerBtnsHeaderLvl2">
+                {% if ListItems|SearchInList:'Home' %}
+                    <div class="ItemHeader ItemHeaderAniIcon" onclick="GoToUrl('/')">
+                        <p>خانه</p>
+                        <i class="far fa-home"></i>
+                    </div>
+                {% endif %}
+                {% if ListItems|SearchInList:'WorkSamples' %}
+                    <div class="ItemHeader ItemHeaderAniIcon" onclick="GoToUrl('/Ws')">
+                        <p>نمونه کار ها</p>
+                        <i class="far fa-file-alt"></i>
+                    </div>
+                {% endif %}
+                {% if ListItems|SearchInList:'GroupMembers' %}
+                    <div class="ItemHeader ItemHeaderAniIcon" onclick="GoToUrl('/Gm')">
+                        <p>اعضای گروه</p>
+                        <i class="far fa-users"></i>
+                    </div>
+                {% endif %}
+                {% if ListItems|SearchInList:'AboutUs' %}
+                    <div class="ItemHeader ItemHeaderAniIcon">
+                        <p>درباره ما</p>
+                        <i class="far fa-info"></i>
+                    </div>
+                {% endif %}
+                {% if ListItems|SearchInList:'ContactUs' %}
+                    <div class="ItemHeader ItemHeaderAniIcon" ClickFunc="ScrollOnElement(ContainerContactUs)">
+                        <p>تماس با ما</p>
+                        <i class="far fa-phone IconPhoneCall"></i>
+                    </div>
+                {% endif %}
+            </div>
+            {% if ListItems|SearchInList:'Logo' %}
+                <div class="ItemHeader ItemLogoHeader">
+                    <img src="/Static/Img/Img-Logo/Logo.jpg" alt="Logo">
+                </div>
+            {% endif %}
+            {% if ListItems|SearchInList:'Account' %}
+                {% if User != None %}
+                    <div class="ItemHeader ItemAccount" ClickFunc="GoToUrl({{ User.GerSrcPanel }})">
+                        <p>{{ User.GetNameAndFamily }}</p>
+                        <i class="far fa-user"></i>
+                    </div>
+                {% else %}
+                    {% if Member != None %}
+                        <div class="ItemHeader ItemAccount" ClickFunc="GoToUrl({{ Member.GerSrcPanel }})">
+                            <p>{{ Member.GetNameAndFamily }}</p>
+                            <i class="far fa-user"></i>
+                        </div>
+                    {% else %}
+                        <div class="ItemHeader ItemAccount">
+                            <i class="far fa-sign-in-alt" ClickFunc="GoToUrl(/U/Login-Create)"></i>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endwith %}
+    </div>
+</header>
+{% if Style == 'Type2' %}
+    <div class="ContainerBlurOnHeader"></div>
+    <img src="/Static/Img/Img-Design/Img-Background/BackgroundHome1.jpg" class="ImageHeaderHome" alt="Image Header">
+{% endif %}
+

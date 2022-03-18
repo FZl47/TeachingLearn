@@ -1,0 +1,694 @@
+body {
+    overflow-x: hidden;
+}
+
+[src='__None__'] {
+    display: none !important;
+}
+
+::placeholder {
+    color: #999999;
+    font-size: 85%;
+}
+
+p {
+    margin: 0;
+}
+
+.ContainerTitle {
+    text-align: left;
+    border-left: 4px solid #95dde6;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+.ContainerTitle p {
+    font-size: 150%;
+}
+
+.ContainerBase {
+    background: #f6ffff;
+}
+
+.ContainerContentAndMenu {
+    display: flex;
+    justify-content: space-between;
+    width: 99%;
+    height: 100%;
+    margin: auto;
+    padding: 5px;
+    border-radius: 10px;
+    overflow-x: hidden;
+}
+
+
+.ContainerAsideMenu {
+    min-height: 100vh;
+    width: 13%;
+    display: inline-block;
+    position: relative;
+    padding: 20px 10px;
+    transition: all .2s;
+}
+
+.ContainerContent {
+    width: 86%;
+    min-height: 100%;
+    display: inline-block;
+    background: white;
+    margin: 5px auto;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: -2px 0 7px rgba(228, 228, 228, 0.6), inset -3px -3px 10px rgba(242, 242, 242, 0.3);
+}
+
+.TitleMenu {
+    display: none;
+}
+
+
+.ContainerAsideMenuIsOpen {
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+
+.ContainerAsideMenuIsOpen .ContainerAsideMenu {
+    width: 80% !important;
+}
+
+.ContainerAsideMenuIsOpen .ContainerContent {
+    position: absolute;
+    left: 85%;
+    opacity: .4;
+}
+
+
+.ContainerContent .ContainerTitle {
+    border: none;
+}
+
+.ContainerContent .ContainerTitle p {
+    border: none;
+    border-bottom: 3px solid #fa63a7;
+    display: inline-block;
+}
+
+.Container {
+    height: 100%;
+    margin: auto;
+    transform: scale(.9) translateY(20px) translateX(-20px);
+    animation: ShowContainerContent .5s forwards;
+}
+
+
+.ContainerIsHide {
+    display: none;
+}
+
+.ContainerAsideInfo {
+    padding: 3px;
+}
+
+.ContainerAsideInfo > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ContainerAsideInfo > div:first-of-type {
+
+}
+
+.ContainerAsideInfo > div:last-of-type {
+    color: #777777;
+}
+
+.NameAndFamilyTeacherAside {
+    margin: 0;
+}
+
+.MoneySellingCoursesAside {
+    margin-top: 5px;
+    text-align: left;
+    color: #555555;
+}
+
+.ImageTeacherProfileAside {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.ContainerMainAside {
+    margin-top: 40px;
+}
+
+.ContainerButtonAside div {
+    cursor: pointer;
+    padding: 20px 7px;
+    display: flex;
+    justify-content: space-between;
+    color: #6e6e6e;
+    transition: all .15s, border 0s;
+    font-size: 95%;
+    border-radius: 10px;
+}
+
+.ContainerButtonAside div:hover {
+    background: white;
+    border: 1px solid #f5f5f5;
+    color: black;
+}
+
+.ContainerButtonAside div:hover i {
+    color: #fa63a7;
+    font-weight: bold;
+}
+
+.ContainerButtonAside div p {
+    display: inline-block;
+}
+
+.ContainerButtonAside div i {
+    font-size: 120%;
+    padding-top: 2px;
+}
+
+
+#FormInformation {
+    margin: auto;
+    margin-top: 30px;
+    text-align: left;
+    width: 70%;
+}
+
+#FormSubmitCourse {
+    margin: auto;
+    margin-top: 30px;
+    text-align: left;
+    width: 70%;
+}
+
+.ItemForm {
+    margin: 7px 0;
+}
+
+.LabelInput {
+    margin: 5px;
+    font-size: 95%;
+    color: #888888;
+}
+
+.ItemFormInput i {
+    text-align: right;
+}
+
+.ContainerImageFormInformation {
+    direction: rtl;
+    margin: 10px auto;
+    width: 80%;
+}
+
+#ImageInformation {
+    width: 200px;
+    height: 200px;
+    display: block;
+    border-radius: 10px;
+    border: 1px solid #eeeeee;
+}
+
+.ContainerButtonForm {
+    margin-top: 50px;
+    text-align: right;
+    padding: 5px;
+}
+
+.ContainerButtonForm button {
+    width: auto;
+}
+
+.ContainerImageFormSubmitCourse {
+    direction: rtl;
+    margin: 10px auto;
+    width: 80%;
+}
+
+#ImageForSubmitCourse {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    border: 1px solid #eeeeee;
+    display: block;
+}
+
+.PriceSubmitCourse {
+    font-size: 85%;
+    color: #666666;
+    width: 80%;
+    margin: 10px auto;
+}
+
+.PriceSubmitCourse p {
+    display: inline-block;
+    direction: ltr;
+}
+
+.Courses {
+    margin: 50px 0;
+    text-align: center;
+}
+
+.Course {
+    vertical-align: top;
+    display: inline-block;
+    background: rgba(170, 252, 204, 0.8);
+    border: 1px solid rgba(217, 217, 217, 0.3);
+    box-shadow: 0 2px 15px rgba(188, 188, 188, 0.2);
+    width: 60%;
+    height: 340px;
+    margin: 25px 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: box-shadow .2s;
+}
+
+.Course:hover {
+    box-shadow: 0 5px 15px rgba(188, 188, 188, 0.4);
+}
+
+.Course > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Course img {
+    width: 250px;
+    height: 250px;
+    border-radius: 20% 10% 90% 39%;
+    box-shadow: 5px 4px 10px rgba(145, 145, 145, 0.2);
+    cursor: pointer;
+}
+
+.AboutCourse {
+    width: 100%;
+}
+
+.TitleCourse {
+    margin: 5px;
+    padding: 4px;
+    text-align: right;
+}
+
+.TitleCourse a {
+    color: #444444;
+}
+
+.InfoCourse {
+    width: 95%;
+    display: block;
+    margin: 15px auto;
+    padding: 10px;
+    border-radius: 10px;
+    height: 260px;
+    text-align: left;
+}
+
+.InfoCourse .ResultField {
+    font-size: 85%;
+}
+
+.InfoCourse .Label {
+    font-size: 70%;
+}
+
+.InfoCourse > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.InfoCourse p {
+    display: inline-block;
+    margin: 0;
+}
+
+.InfoCourse > div > div > div {
+    margin: 7px;
+}
+
+.ContainerItemsInfoCourse > div {
+    padding-bottom: 2px;
+    border-bottom: 1px solid rgba(255, 170, 200, 0.3);
+}
+
+.ContainerItemsInfoCourse > div i {
+    color: rgb(120, 115, 121);
+    margin-right: 5px;
+    font-size: 90%;
+}
+
+.ContainerChartStateCourseInfo {
+    background: rgba(237, 237, 237, 0.8);
+    box-shadow: 3px 6px 10px rgba(194, 194, 194, 0.5), inset 4px 4px 25px rgba(238, 238, 238, .6);
+    border: 1px solid rgba(221, 221, 221, 0.8);
+    width: 58%;
+    height: 225px;
+    margin: auto;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+.ContainerChartStateCourseInfo canvas {
+    width: 99% !important;
+    height: 100%;
+}
+
+.InfoChartStateCourse {
+    font-size: 75%;
+    color: #6d7373;
+    margin: 5px;
+}
+
+.ContainerForm {
+    text-align: right;
+    box-shadow: 0 0 3px rgba(221, 221, 221, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.ContainerChartsDashboard {
+    margin: 20px;
+    margin-top: 50px;
+}
+
+.ContainerChartsDashboard .ContainerTitle p {
+    border: none;
+
+    padding-left: 10px;
+}
+
+.ContainerChartsDashboard .ContainerTitle {
+    font-size: 85%;
+    color: #444444;
+    background: #f9f9f9;
+    padding: 10px;
+    border-left: 3px solid #83f6be;
+    border-radius: 5px;
+}
+
+.ContainerChartsDashboard .ContainerTitle i {
+    float: right;
+    font-size: 150%;
+    padding-top: 5px;
+}
+
+.ContainerChartMoney {
+    margin: 50px 0;
+}
+
+.ContainerChartVisitCourses {
+    margin: 50px 0;
+}
+
+.ContainerChartVisitCourses .ContentCharts > div {
+    width: 390px;
+    height: 235px;
+    background: #ffced1;
+    border: 1px solid rgb(252, 182, 187);
+}
+
+.ContainerChartVisitCourses .ContentCharts {
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.ContentCharts {
+    width: 90%;
+    padding: 10px 40px;
+    margin: 20px auto;
+    display: flex;
+    border-radius: 25px;
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.2), rgba(241, 255, 253, 0.7));
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+}
+
+.ContentCharts > div {
+    width: 550px;
+    height: 315px;
+    text-align: center;
+    background: rgba(227, 255, 243, 0.8);
+    box-shadow: 1px 1px 10px rgba(197, 197, 197, 0.1);
+    border: 1px solid #b4f9cf;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.ContainerChart {
+    margin-bottom: 10px;
+}
+
+.ContainerChartsDashboard .InfoChartStateCourse {
+    font-size: 85%;
+}
+
+.ContainerHeader {
+    background: #6b7b8c;
+    padding: 5px;
+    border-radius: 0 0 5px 5px;
+    display: none;
+}
+
+.ContainerHeader > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ContainerHeader .NameAndFamilyTeacherAside {
+    color: #eeeeee;
+    font-size: 85%;
+}
+
+.ContainerHeader .MoneySellingCoursesAside {
+    color: #fffd6c;
+    font-weight: bold;
+    margin-top: 13px;
+    display: inline-block;
+    vertical-align: bottom;
+    font-size: 110%;
+}
+
+.ContainerHeader .NameAndFamilyTeacherAside {
+    vertical-align: top;
+    margin: 0;
+    text-align: center;
+    position: absolute;
+    right: 62px;
+    top: 2px;
+}
+
+.ContainerHeader .IconHamburgerMenu {
+    background: none;
+    color: white;
+    font-size: 180%;
+    margin-top: 8px;
+    position: relative;
+}
+
+
+@keyframes ShowContainerContent {
+    100% {
+        transform: scale(1) translateX(0) translateY(0);
+    }
+}
+
+@media screen and (max-width: 1680px) {
+
+    .ContentChartsMoney > div {
+        width: 45%;
+        height: 100%;
+    }
+
+    .ContainerChartVisitCourses .ContentCharts > div {
+        width: 32%;
+        height: 100%;
+    }
+
+    .ContainerChartStateCourseInfo {
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 1500px) {
+    .ContainerContent {
+        width: 83%;
+    }
+
+    .ContainerAsideMenu {
+        width: 17%;
+    }
+
+    .Course {
+        position: relative;
+        width: 400px;
+        height: auto;
+        padding: 0;
+    }
+
+    .Course > div {
+        display: inline-block;
+    }
+
+    .Course img {
+        height: 300px;
+        width: 400px;
+        border-radius: 0;
+    }
+
+    .InfoCourse {
+        margin: 0;
+        padding: 0;
+    }
+
+    .InfoCourse > div {
+        display: block;
+    }
+
+    .ContainerItemsInfoCourse {
+        display: block;
+    }
+
+    .ContainerChartStateCourseInfo {
+        width: 98% !important;
+        height: auto;
+        margin: 0 10px;
+    }
+
+}
+
+@media screen and (max-width: 1000px) {
+    .ContainerContent {
+        width: 80%;
+    }
+
+    .ContainerAsideMenu {
+        width: 20%;
+    }
+
+    .ContentChartsVisits {
+        width: 100% !important;
+        overflow-x: auto;
+    }
+
+    .ContentChartsVisits > div {
+        width: 400px !important;
+        margin: 10px;
+    }
+
+    .ContentChartsVisits::-webkit-scrollbar {
+        width: 8px;
+        height: 2px;
+    }
+
+    .ContentChartsVisits::-webkit-scrollbar-track {
+        background: #d4d4d4;
+        margin-right: 2px;
+    }
+
+    .ContentChartsVisits::-webkit-scrollbar-thumb {
+        background: #93979a;
+        border-radius: 20px;
+    }
+
+    .ContentChartsVisits::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .ContentChartsMoney {
+        width: 100% !important;
+        display: block;
+    }
+
+    .ContentChartsMoney > div {
+        width: 95% !important;
+        display: block !important;
+        height: 100%;
+        margin: 20px auto;
+    }
+
+    .ContainerHeader {
+        display: block;
+    }
+
+    .TitleMenu {
+        display: block;
+        font-size: 180%;
+        text-align: center;
+        font-family: 'KalameBlack';
+        color: #555555;
+        border-bottom: 2px solid rgba(250, 99, 167, 0.8);
+        box-shadow: 0 3px 6px rgba(238, 238, 238, 0.5);
+    }
+
+    .ContainerAsideInfo {
+        display: none;
+    }
+
+    .ContainerMainAside {
+        margin: 0;
+    }
+
+    .ContainerAsideMenu {
+        width: 0;
+        overflow: hidden;
+        padding: 0;
+    }
+
+    .ContainerContentAndMenu {
+        padding: 5px 0;
+    }
+
+    .ContainerContent {
+        width: 100%;
+        box-shadow: 0 0 8px rgba(221, 221, 221, 0.7);
+    }
+
+    .ContainerForm {
+        width: 95% !important;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    body {
+        font-size: 98%;
+    }
+
+    .Course {
+        width: 90vw;
+        position: relative;
+    }
+
+    .Course img {
+        width: 100%;
+        min-width: 90vw;
+        height: 350px;
+    }
+
+    .ContentChartsMoney{
+        width: 100%;
+        padding: 0;
+    }
+
+    .ContentChartsMoney > div {
+        width: 95% !important;
+        display: block !important;
+        height: 100%;
+        margin: 20px auto;
+    }
+
+}

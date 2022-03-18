@@ -1,0 +1,77 @@
+body {
+    background-color: #f8f9fa !important;
+}
+
+.nav-link:hover {
+    color: #eee;
+}
+
+.card {
+    transition: all 0.3s linear;
+}
+
+.card:hover {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+.act {
+    border-bottom: 3px solid #754ffe !important;
+
+}
+
+main {
+    top: -55px;
+}
+
+aside {
+    top: -200px;
+}
+
+#LoginRegister {
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(to right, #4fe4fe, #754ffe);
+}
+
+#sub-l {
+    background-image: linear-gradient(to right, #4fe4fe, #924ffe);
+}
+
+#sub-R {
+    background-image: linear-gradient(to right, #4fe4fe, #924ffe);
+}
+
+#searchInput {
+    transition: all 0.3s linear;
+}
+
+.nav-link {
+    color: black;
+}
+
+.InfoCourse {
+    padding: 3px;
+}
+
+.InfoCourse > * {
+    margin: 10px 0;
+    padding: 3px;
+    background: rgba(234, 236, 243, 0.2);
+    border-radius: 2px;
+    border-top: 1px solid #e9ebef;
+    border-bottom: 1px solid #e9ebef;
+}
+
+.fa-times {
+    transform: none !important;
+    cursor: pointer;
+    font-size: 130%;
+    height: 20px;
+    font-weight: bold;
+}
+
+@media (min-width: 992px) {
+    #searchInput:focus {
+        width: 400px;
+    }
+}

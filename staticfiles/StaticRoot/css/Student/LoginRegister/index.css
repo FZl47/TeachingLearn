@@ -1,0 +1,23 @@
+#LoginRegister {
+    background: linear-gradient(120deg, #e659f5, #ffac94);
+    min-height: 100vh;
+}
+
+#form {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(230, 89, 245, .5);
+}
+
+#sub-l {
+    background: #3bde9b;
+    padding: 7px;
+    border-radius: 4px !important;
+    color: white;
+}
+
+#sub-R {
+    background: #5eaeff;
+    padding: 7px;
+    border-radius: 4px !important;
+    color: white;
+}

@@ -1,0 +1,557 @@
+{% extends 'Base/BaseTemplate.html' %}
+{% load FilterTags %}
+{% load static %}
+
+{% block Title %}
+    {{ Course.Title }} 
+{% endblock %}
+
+{% block Css %}
+    <link rel="stylesheet" href="{% static 'css/Teacher/ViewCourse/index.css' %}">
+{% endblock %}
+
+{% block Content %}
+    <input type="hidden" id="InfoCourse" IdCourse="{{ Course.id }}" Price="{{ Course.Price }}">
+    <div class="ContainerEditCourse ContainerBlur d-none" Size="Small" id="ContainerEditCourse">
+        <div class="ContainerTitle">
+            <p>Edit Course</p>
+        </div>
+        <form action="/t/Panel/{{ Course.id }}/EditCourse" method="post" enctype="multipart/form-data" content="UTF-8"
+              id="FormSubmitCourse">
+            {% csrf_token %}
+            <div class="ItemForm">
+                <p class="LabelInput">
+                    Title Course :
+                </p>
+                <div class="ItemFormInput">
+                    <input type="text" placeholder="JavaScript Course" name="TitleCourse" InputForm
+                           InputFormSubmitCourse Bigger="3" Less="200"
+                           SetIn="Container" value="{{ Course.Title|NoneVal:'' }}" CheckInputVal>
+                </div>
+            </div>
+            <div class="ItemForm">
+                <p class="LabelInput">
+                    PreRequisites :
+                </p>
+                <div class="ItemFormInput">
+                    <input type="text" placeholder="Html & Css" name="PreRequisites" InputForm
+                           InputFormSubmitCourse Bigger="0"
+                           Less="200" SetIn="Container" value="{{ Course.PreRequisites|NoneVal:'' }}" CheckInputVal>
+                </div>
+            </div>
+            <div class="ItemForm">
+                <p class="LabelInput">
+                    References <span class="text-danger">(Please split with <b>" , "</b> )</span> :
+                </p>
+                <div class="ItemFormInput">
+                    <input type="text" placeholder="For Example : w3school.com , JavaScript.com "
+                           name="References" InputForm InputFormSubmitCourse Bigger="0" Less="1000"
+                           SetIn="Container" value="{{ Course.References|NoneVal:'' }}" CheckInputVal>
+                </div>
+            </div>
+            <div class="ItemForm">
+                <p class="LabelInput">
+                    Picture :
+                </p>
+                <div class="ItemFormInput">
+                    <input type="file" name="Image" InputForm InputFormSubmitCourse
+                           SetIn="Container" IdImageTag="ImageForSubmitCourse" CheckInputVal TypeVal="File">
+                    <input type="hidden" name="StateImage" value="Geted">
+                </div>
+                <div class="ContainerImageFormSubmitCourse">
+                    <img src="{{ Course.Image.url }}" id="ImageForSubmitCourse" alt="{{ Course.Title }}">
+                </div>
+            </div>
+            <div class="ItemForm">
+                <p class="LabelInput">
+                    Price :
+                </p>
+                <div class="ItemFormInput">
+                    <input type="number" placeholder="0" name="Price" InputForm InputFormSubmitCourse
+                           InputPriceFormSubmitCourse Bigger="0" Less="15"
+                           SetIn="Container" TypeVal="Number" value="{{ Course.Price|NoneVal:'' }}" CheckInputVal>
+                </div>
+                <div class="PriceSubmitCourse">
+                    $
+                    <p id="PriceSubmitCourse" class="SplitNumber" Number="{{ Course.Price|NoneVal:'' }}"></p>
+                </div>
+            </div>
+            <div class="ItemForm">
+                <p class="LabelInput">Description :</p>
+                <div class="ItemFormInput">
+                                        <textarea name="Description"
+                                                  placeholder="This course is a great start for beginners"
+                                                  rows="6" type="text" InputForm InputFormSubmitCourse SetIn="Container"
+                                                  TypeVal="Text" Bigger="3" Less="5000"
+                                                  CheckInputVal>{{ Course.Description|NoneVal:'' }}</textarea>
+                </div>
+            </div>
+            <div class="ItemForm">
+                <p class="LabelInput">State Course :</p>
+                <div class="ItemFormInput">
+                    <select selected="selected" name="StateCourse" Valid="true" class="InputValid"
+                            InputFormSubmitCourse>
+                        <option>Active</option>
+                        <option>Pause</option>
+                        <option>Completed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="ContainerButtonForm">
+                <button class="BtnStyleNone" type="button" onclick="document.body.click()">Close</button>
+                <button class="BtnStyle_5 Disabled" type="button" id="ButtonFormSubmitCourse">Submit
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="Course">
+        <div class="InfoCourse">
+            <div class="ContainerTitle">
+                <p>Information Course</p>
+            </div>
+            <div class="ContainerItemInfo">
+                <div class="ItemInfo">
+                    <p class="Label">Title Course</p>
+                    <p class="ResultField">{{ Course.Title }}</p>
+                </div>
+                <div class="ItemInfo">
+                    <p class="Label">Prerequisites</p>
+                    <p class="ResultField">{{ Course.PreRequisites }}</p>
+                </div>
+                <div class="ItemInfo">
+                    <p class="Label">References</p>
+                    <p class="ResultField">{{ Course.References }}</p>
+                </div>
+                <div class="ItemInfo">
+                    <p class="Label">Time Start</p>
+                    <p class="ResultField">{{ Course.DateTimeSubmit }}(<span
+                            class="text-info">{{ Course.TimePastSubmit }}</span>)</p>
+                </div>
+                <div class="ItemInfo">
+                    <p class="Label">Last Time Updated</p>
+                    <p class="ResultField">{{ Course.LastTimeUpdated|NoneVal:'' }}(<span
+                            class="text-info">{{ Course.TimePastUpdated }}</span>)
+                    </p>
+                </div>
+                <div class="ItemInfo">
+                    <p class="Label">Price</p>
+                    {% if Course.CourseIsFree %}
+                        <span>
+                            <p class="ResultField ltr bold text-success">Free</p>
+                        </span>
+                    {% else %}
+                        {% if Course.HasDiscount %}
+                            <span class="TextDLineThroughRed Small mr-2">
+                            $
+                            <p class="ResultField ltr bold"
+                               Number="{{ Course.Price }}">{{ Course.Price }}</p>
+                        </span>
+                            <span class="bold">$
+                            <p class="ResultField ltr bold"
+                               Number="{{ Course.GetPrice }}">{{ Course.GetPrice }}</p>
+                            </span>
+                        {% else %}
+                            <span class="bold">$
+                                <p class="ResultField ltr bold"
+                                   Number="{{ Course.GetPrice }}">{{ Course.GetPrice }}</p>
+                            </span>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="ItemInfo">
+                    <p class="Label">Description</p>
+                    <p class="ResultField">{{ Course.Description }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="ImageCourseAndEdit">
+            <div class="badge StateCourse {% if Course.StateCourse == 'Active' %}badge-info{% elif Course.StateCourse == 'Pause' %}badge-warning{% else %}badge-success{% endif %}">
+                {{ Course.StateCourse }}
+            </div>
+            {% if Course.HasDiscount %}
+                <div class="ContainerDiscountInfo">
+                    <div>
+                        <p>{{ Course.GetDiscount.Title }}</p>
+                        <i class="far fa-trash" ClickFunc="DeleteDiscount()"></i>
+                    </div>
+                    <div>
+                        <div>
+                            <i class="far fa-clock"></i>
+                            <span TimerCounterDown ToDateTimer="{{ Course.GetDiscount.TimeExpired }}"></span>
+                        </div>
+                        <p class="badge badge-success">{{ Course.GetDiscount.Percent }}%</p>
+                    </div>
+                </div>
+            {% endif %}
+            {% if Course.HasDiscount %}
+                <i class="fas fa-percent ItemCourse" Percent title="Delete Discount" ClickFunc="DeleteDiscount()"></i>
+            {% else %}
+                <i class="far fa-percent ItemCourse" Percent title="Add Discount" ClickFunc="AddDiscountCourse()"></i>
+            {% endif %}
+            <i class="far fa-pen ItemCourse" Edit title="Edit Course" ClickFunc="ChangeInfoCourse()"></i>
+            <i class="far fa-trash ItemCourse" Trash title="Delete Course" ClickFunc="DeleteCourse()"></i>
+            <img src="{{ Course.Image.url }}" alt="{{ Course.Title }}" title="{{ Course.Title }}">
+        </div>
+    </div>
+    <div class="SectionVid">
+        <div class="ContainerTitle">
+            <p>Section & Videos</p>
+        </div>
+        <div class="ContainerUploadingVideoMessage d-none">
+            <div>
+                <p class="TextPleaseWait">Please wait</p>
+                <div>
+                    <p class="TextUploading">Uploading
+                        <i class="far fa-spinner fa-spin"></i>
+                </div>
+            </div>
+        </div>
+        {% for Section in Course.GetSections %}
+            <div class="SectionCourse">
+                <div class="ContainerBtnItemCollapse">
+                    <div class="CollapseBtn" data-toggle="collapse" data-target="#SectionID_{{ Section.id }}">
+                        <p>{{ Section.Title }}</p>
+                    </div>
+                    <div class="SectionCourseItem" SectionID="{{ Section.id }}" TitlePast="{{ Section.Title }}">
+                        <div>
+                            <div>
+                                <i class="fas fa-video"></i>
+                                <p>{{ Section.LenVideos }}</p>
+                            </div>
+                            <div>
+                                <i class="far fa-pen" Edit></i>
+                                <i class="far fa-trash" Trash></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="SectionID_{{ Section.id }}" class="collapse CollapseContainer">
+                    <div class="Videos">
+                        {% if Section.GetVideos|ListIsNone %}
+                            <div class="text-center">
+                                <p class="bold text-danger">No Video</p>
+                            </div>
+                        {% endif %}
+                        {% for Video in Section.GetVideos %}
+                            <div class="Video">
+                                <div class="LinkVideo">
+                                    {% if Video.StateVideo == '200' and Video.Video != None %}
+                                        <a href="{{ Video.Video.url }}" target="_blank">Video</a>
+                                    {% else %}
+                                        <p class="text-danger">There was a Problem Uploading</p>
+                                    {% endif %}
+                                    <div>
+                                        <div class="ContainerTimeDurationVideo">
+                                            <i class="far fa-hourglass"></i>
+                                            <p>{{ Video.GetDurationVideo }}</p>
+                                        </div>
+                                        <div class="ContainerTimePastSubmitVideo">
+                                            <i class="far fa-clock"></i>
+                                            <p>{{ Video.GetTimePastSubmit }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ItemVideo" VideoID="{{ Video.id }}" SectionID="{{ Section.id }}">
+                                    {% if Video.Video != None and Video.StateVideo == '200' %}
+                                        <i class="far fa-pen" Edit
+                                           TextChangeVideo="Change Video <b>{{ forloop.counter }}</b> in <b>{{ Section.Title }}</b>"
+                                           LinkVideoPast="{{ Video.Video.url }}"></i>
+                                    {% else %}
+                                        <i class="far fa-pen" Edit
+                                           TextChangeVideo="Change Video <b>{{ forloop.counter }}</b> in <b>{{ Section.Title }}</b>"
+                                        ></i>
+                                    {% endif %}
+                                    <i class="far fa-trash" Trash></i>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="ContainerAddVideoInSection">
+                        <div onclick="AddVideoCourse('{{ Section.id }}','{{ Section.Title }}')">
+                            Add Video
+                            <i class="far fa-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <div class="CreateSectionCourse">
+            <div ClickFunc="CreateSectionCourse()">
+                Create Section
+                <i class="far fa-plus"></i>
+            </div>
+        </div>
+    </div>
+    <div class="Charts">
+        <div class="ContainerTitle">
+            <p>Charts</p>
+        </div>
+        <div class="ChartsFinancialStatistics">
+            <div class="ContainerTitle">
+                <p>Financial statistics</p>
+            </div>
+            <div class="ContainerCharts">
+                {% with Course.GetDataChart_MoneyMonth as DataChart %}
+                    <div>
+                        <div class="ContainerChart">
+                            <canvas ChartLine UnitChart="$"
+                                    id="Chart_Course_ID_{{ Course.id }}"
+                                    DataChart="{{ DataChart|GetValueInDic:'Values' }}"
+                                    LabelsChart="{{ DataChart|GetValueInDic:'Labels' }}">
+                            </canvas>
+                        </div>
+                        <div class="InfoChartStateCourse">
+                            month
+                        </div>
+                    </div>
+                {% endwith %}
+                {% with Course.GetDataChart_MoneyYear as DataChart %}
+                    <div>
+                        <div class="ContainerChart">
+                            <canvas ChartLine UnitChart="$"
+                                    id="Chart_Course_ID_{{ Course.id }}"
+                                    DataChart="{{ DataChart|GetValueInDic:'Values' }}"
+                                    LabelsChart="{{ DataChart|GetValueInDic:'Labels' }}">
+                            </canvas>
+                        </div>
+                        <div class="InfoChartStateCourse">
+                            year
+                        </div>
+                    </div>
+                {% endwith %}
+            </div>
+            <div class="ValueAllCharts">
+                <div>
+                    <p class="Label">Total income</p>
+                    <p class="bold">$ {{ Course.GetAllMoneyPayment }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="ChartsVisitCourse">
+            <div class="ContainerTitle">
+                <p>Visit course</p>
+            </div>
+            <div class="ContainerCharts">
+                {% with Course.GetDataChart_VisitsToday as DataChart %}
+                    <div>
+                        <div class="ContainerChart">
+                            <canvas ChartLine UnitChart="visits"
+                                    id="Chart_Course_ID_{{ Course.id }}"
+                                    DataChart="{{ DataChart|GetValueInDic:'Values' }}"
+                                    LabelsChart="{{ DataChart|GetValueInDic:'Labels' }}">
+                            </canvas>
+                        </div>
+                        <div class="InfoChartStateCourse">
+                            today
+                        </div>
+                    </div>
+                {% endwith %}
+                {% with Course.GetDataChart_VisitsMonth as DataChart %}
+                    <div>
+                        <div class="ContainerChart">
+                            <canvas ChartLine UnitChart="visits"
+                                    id="Chart_Course_ID_{{ Course.id }}"
+                                    DataChart="{{ DataChart|GetValueInDic:'Values' }}"
+                                    LabelsChart="{{ DataChart|GetValueInDic:'Labels' }}">
+                            </canvas>
+                        </div>
+                        <div class="InfoChartStateCourse">
+                            month
+                        </div>
+                    </div>
+                {% endwith %}
+                {% with Course.GetDataChart_VisitsYear as DataChart %}
+                    <div>
+                        <div class="ContainerChart">
+                            <canvas ChartLine UnitChart="visits"
+                                    id="Chart_Course_ID_{{ Course.id }}"
+                                    DataChart="{{ DataChart|GetValueInDic:'Values' }}"
+                                    LabelsChart="{{ DataChart|GetValueInDic:'Labels' }}">
+                            </canvas>
+                        </div>
+                        <div class="InfoChartStateCourse">
+                            year
+                        </div>
+                    </div>
+                {% endwith %}
+            </div>
+            <div class="ValueAllCharts">
+                <div>
+                    <p class="Label">Total visits</p>
+                    <p class="bold">
+                        <i class="fa fa-eye"></i>
+                    <p class="SplitNumber" Number="{{ Course.GetCountAllVisits }}">{{ Course.GetCountAllVisits }}</p>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="Comments">
+        <div class="ContainerTitle">
+            <p>Comments</p>
+        </div>
+        <div class="ContainerBtnSwitchContainerComments">
+            <div BtnSwitchComments="NewComments">
+                <p>new</p>
+                <i class="fa fa-comment"></i>
+                <div class="Small">{{ Course.GetLenNewComments }}</div>
+            </div>
+            <div class="BtnSwitchActive" BtnSwitchComments="AllComments">
+                <p>all</p>
+                <i class="fa fa-comments"></i>
+                <div class="Small">{{ Course.GetLenComments }}</div>
+            </div>
+        </div>
+        <div class="ContainerNewComments d-none" NewComments>
+            {% if Course.GetNewComments|ListIsNone %}
+                <div class="text-center p-2 bg-light mt-4">
+                    <p class="m-0 text-danger">No Comments</p>
+                </div>
+            {% endif %}
+            {% for Comment in Course.GetNewComments %}
+                <div class="Comment" ContainerCommentID="{{ Comment.id }}">
+                    <div class="InfoComment">
+                        <p title="{{ Comment.Student.GetNameAndFamily }}">{{ Comment.Student.GetNameAndFamily|truncatechars:30 }}</p>
+                        <div>
+                            {% if Comment.CommentAnswered %}
+                                <i class="fa fa-check-circle text-success"></i>
+                            {% endif %}
+                            <p class="text-muted Small">{{ Comment.TimePastSubmit }}</p>
+                            <div class="ItemsComment">
+                                <i class="far fa-trash" Trash
+                                   onclick="DeleteComment(this.parentNode.parentNode.parentNode.parentNode,'{{ Comment.id }}')"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="TextComment">
+                        {{ Comment.Text }}
+                    </p>
+                    {% if Comment.CommentAnswered %}
+                        <div class="text-right rtl">
+                            <div class="ContainerAnsweredComment">
+                                <div class="ItemsAnswerComment">
+                                    <span class="TimePastSubmitAnswerComment">
+                                        {{ Comment.TimePastSubmitAnswer }}
+                                    </span>
+                                    <div>
+                                        <i class="far fa-pen" Edit data-toggle="collapse"
+                                           data-target="#Comment_{{ Comment.id }}"></i>
+                                        <i class="far fa-trash" Trash
+                                           onclick="DeleteAnswerComment('{{ Comment.id }}')"></i>
+                                    </div>
+                                </div>
+                                <p class="TextAnswerComment">
+                                    {{ Comment.TextAnswer }}
+                                </p>
+                            </div>
+                            <div class="ContainerAnswerComment collapse" id="Comment_{{ Comment.id }}"
+                                 IdComment="{{ Comment.id }}">
+                                <div class="d-flex justify-content-between">
+                                    <p class="Label bold">Edit your Answer</p>
+                                    <textarea ContainerAnswerText Bigger="1"
+                                              Less="5000">{{ Comment.TextAnswer }}</textarea>
+                                </div>
+                                <button class="Disabled" BtnSubmitAnswerComment TypeSubmit="Edit">Edit</button>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div data-toggle="collapse" class="CollapseBtn" data-target="#Comment_{{ Comment.id }}">
+                            <p>Replay</p>
+                            <i class="far fa-reply"></i>
+                        </div>
+                        <div class="text-right rtl">
+                            <div class="collapse ContainerAnswerComment" id="Comment_{{ Comment.id }}"
+                                 IdComment="{{ Comment.id }}">
+                                <div class="d-flex justify-content-between">
+                                    <p class="Label d-block bold">Your Answer</p>
+                                    <textarea ContainerAnswerText Bigger="1" Less="5000"></textarea>
+                                </div>
+                                <button class="Disabled" BtnSubmitAnswerComment TypeSubmit="Submit">Submit</button>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="ContainerAllComments" AllComments>
+            {% if Course.GetAllComments|ListIsNone %}
+                <div class="text-center p-2 bg-light mt-4">
+                    <p class="m-0 text-danger">No Comments</p>
+                </div>
+            {% endif %}
+            {% for Comment in Course.GetAllComments %}
+                <div class="Comment" ContainerCommentID="{{ Comment.id }}">
+                    <div class="InfoComment">
+                        <p title="{{ Comment.Student.GetNameAndFamily }}">{{ Comment.Student.GetNameAndFamily|truncatechars:30 }}</p>
+                        <div>
+                            {% if Comment.CommentAnswered %}
+                                <i class="fa fa-check-circle text-success"></i>
+                            {% endif %}
+                            <p class="text-muted Small">{{ Comment.TimePastSubmit }}</p>
+                            <div class="ItemsComment">
+                                <i class="far fa-trash" Trash
+                                   onclick="DeleteComment(this.parentNode.parentNode.parentNode.parentNode,'{{ Comment.id }}')"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="TextComment">
+                        {{ Comment.Text }}
+                    </p>
+                    {% if Comment.CommentAnswered %}
+                        <div class="text-right rtl">
+                            <div class="ContainerAnsweredComment">
+                                <div class="ItemsAnswerComment">
+                                    <span class="TimePastSubmitAnswerComment">
+                                        {{ Comment.TimePastSubmitAnswer }}
+                                    </span>
+                                    <div>
+                                        <i class="far fa-pen" Edit data-toggle="collapse"
+                                           data-target="#Comment_{{ Comment.id }}"></i>
+                                        <i class="far fa-trash" Trash
+                                           onclick="DeleteAnswerComment('{{ Comment.id }}')"></i>
+                                    </div>
+                                </div>
+                                <p class="TextAnswerComment">
+                                    {{ Comment.TextAnswer }}
+                                </p>
+                            </div>
+                            <div class="ContainerAnswerComment collapse" id="Comment_{{ Comment.id }}"
+                                 IdComment="{{ Comment.id }}">
+                                <div class="d-flex justify-content-between">
+                                    <p class="Label bold">Edit your Answer</p>
+                                    <textarea ContainerAnswerText Bigger="1"
+                                              Less="5000">{{ Comment.TextAnswer }}</textarea>
+                                </div>
+                                <button class="Disabled" BtnSubmitAnswerComment TypeSubmit="Edit">Edit</button>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div data-toggle="collapse" class="CollapseBtn" data-target="#Comment_{{ Comment.id }}">
+                            <p>Replay</p>
+                            <i class="far fa-reply"></i>
+                        </div>
+                        <div class="text-right rtl">
+                            <div class="collapse ContainerAnswerComment" id="Comment_{{ Comment.id }}"
+                                 IdComment="{{ Comment.id }}">
+                                <div class="d-flex justify-content-between">
+                                    <p class="Label d-block bold">Your Answer</p>
+                                    <textarea ContainerAnswerText Bigger="1" Less="5000"></textarea>
+                                </div>
+                                <button class="Disabled" BtnSubmitAnswerComment TypeSubmit="Submit">Submit</button>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block Js %}
+    <script src="{% static 'js/Course/CourseDetail/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'Base/Js/Base/Chart/anychart-core.min.js' %}"></script>
+    <script src="{% static 'Base/Js/Base/Chart/Chart.js' %}"></script>
+    <script src="{% static 'Base/Js/Base/Chart/anychart-pie.min.js' %}"></script>
+    <script src="{% static 'Base/Js/Base/Chart/plugin-chart.js' %}"></script>
+    <script src="{% static 'js/Teacher/ViewCourse/index.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,436 @@
+{% extends 'Base/BaseTemplate.html' %}
+{% load FilterTags %}
+{% load static %}
+{% block Title %}
+    {{ Teacher.GetNameAndFamily }}
+{% endblock %}
+
+{% block Css %}
+    <link rel="stylesheet" href="{% static 'css/Teacher/Panel/index.css' %}">
+{% endblock %}
+{% block Content %}
+    <div class="ContainerBase" id="ContainerBase">
+        <div class="ContainerHeader">
+            <div>
+                <div>
+                    <i class="fa fa-bars IconHamburgerMenu" id="IconHamburgerMenu" StateMenu="Close"
+                       onclick="ToggleMenuAside(this)"></i>
+                </div>
+                <div>
+                    <p class="NameAndFamilyTeacherAside">
+                        {{ Teacher.GetNameAndFamily|truncatechars:20 }}
+                    </p>
+                    <p class="MoneySellingCoursesAside">
+                        {% if Teacher.GetMoneySellingCourses == None %}
+                            $ {{ Teacher.GetMoneyInMonth }}
+                        {% else %}
+                            $
+                            {{ Teacher.GetMoneySellingCourses|NoneVal:' 0' }}
+                        {% endif %}
+                    </p>
+                    {% if Teacher.Image != '' %}
+                        <img src="{{ Teacher.Image.url }}" alt="{{ Teacher.GetNameAndFamily }}"
+                             class="ImageTeacherProfileAside">
+                    {% else %}
+                        <img src="/static/image/ImageDefault/avatar-3.jpg" alt="{{ Teacher.GetNameAndFamily }}"
+                             class="ImageTeacherProfileAside">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="ContainerContentAndMenu" id="ContainerContentAndMenu">
+            <div class="ContainerAsideMenu" id="ContainerAsideMenu">
+                <div class="TitleMenu">
+                    Menu
+                </div>
+                <div class="ContainerAsideInfo">
+                    <div>
+                        <div>
+                            <p class="NameAndFamilyTeacherAside">
+                                {{ Teacher.GetNameAndFamily|truncatechars:20 }}
+                            </p>
+                            <p class="MoneySellingCoursesAside">
+                                {% if Teacher.GetMoneySellingCourses == None %}
+                                    $ {{ Teacher.GetMoneyInMonth }}
+                                {% else %}
+                                    $
+                                    {{ Teacher.GetMoneySellingCourses|NoneVal:' 0' }}
+                                {% endif %}
+                            </p>
+                        </div>
+                        {% if Teacher.Image != '' %}
+                            <img src="{{ Teacher.Image.url }}" alt="{{ Teacher.GetNameAndFamily }}"
+                                 class="ImageTeacherProfileAside">
+                        {% else %}
+                            <img src="/static/image/ImageDefault/avatar-3.jpg" alt="{{ Teacher.GetNameAndFamily }}"
+                                 class="ImageTeacherProfileAside">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="ContainerMainAside">
+                    <div class="ContainerButtonAside">
+                        <div BtnAsideMenu ContainerLink="Dashboard">
+                            <p>Dashboard</p>
+                            <i class="far fa-tachometer"></i>
+                        </div>
+                        <div BtnAsideMenu ContainerLink="Courses">
+                            <p>Courses</p>
+                            <i class="far fa-file-video"></i>
+                        </div>
+                        <div BtnAsideMenu ContainerLink="CreateCourse">
+                            <p>Create course</p>
+                            <i class="far fa-file-plus"></i>
+                        </div>
+                        <div BtnAsideMenu ContainerLink="Information">
+                            <p>Information</p>
+                            <i class="far fa-info"></i>
+                        </div>
+                        <div ClickFunc="GoToUrl(/)">
+                            <p>Home</p>
+                            <i class="far fa-home"></i>
+                        </div>
+                        <div ClickFunc="SignOutAccount()">
+                            <p>Sign out</p>
+                            <i class="far fa-sign-out-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ContainerContent" id="ContainerContent">
+                <div class="Container" Container ContainerLinked="Dashboard">
+                    <div class="ContainerTitle">
+                        <p>Dashboard</p>
+                    </div>
+                    <div class="ContainerChartsDashboard">
+                        {% autoescape off %}
+                            <div class="ContainerChartMoney">
+                                <div class="ContainerTitle">
+                                    <p>Financial statistics</p>
+                                    <i class="fa fa-badge-dollar"></i>
+                                </div>
+                                <div class="ContentChartsMoney ContentCharts">
+                                    {% with Teacher.GetFinancialStatistics_ThisMonth as DataChart %}
+                                        <div>
+                                            <div class="ContainerChart">
+                                                <canvas ChartLine UnitChart="$"
+                                                        id="Chart_Course_ID_{{ Course.id }}"
+                                                        DataChart="{{ DataChart|GetValueInDic:'Values' }}"
+                                                        LabelsChart="{{ DataChart|GetValueInDic:'Labels' }}">
+                                                </canvas>
+                                            </div>
+                                            <div class="InfoChartStateCourse">
+                                                month
+                                            </div>
+                                        </div>
+                                    {% endwith %}
+                                    {% with Teacher.GetFinancialStatistics_ThisYear as DataChart %}
+                                        <div>
+                                            <div class="ContainerChart">
+                                                <canvas ChartLine UnitChart="$"
+                                                        id="Chart_Course_ID_{{ Course.id }}"
+                                                        DataChart="{{ DataChart|GetValueInDic:'Values' }}"
+                                                        LabelsChart="{{ DataChart|GetValueInDic:'Labels' }}">
+                                                </canvas>
+                                            </div>
+                                            <div class="InfoChartStateCourse">
+                                                year
+                                            </div>
+                                        </div>
+                                    {% endwith %}
+                                </div>
+                            </div>
+                            <div class="ContainerChartVisitCourses">
+                                <div class="ContainerTitle">
+                                    <p>Visit all course</p>
+                                    <i class="fa fa-eye"></i>
+                                </div>
+                                <div class="ContentChartsVisits ContentCharts">
+                                    {% with Teacher.GetDataChartVisitCourses_Today as DataChart %}
+                                        <div>
+                                            <div class="ContainerChart">
+                                                <canvas ChartLine UnitChart="visits"
+                                                        id="Chart_Course_ID_{{ Course.id }}"
+                                                        DataChart="{{ DataChart|GetValueInDic:'Values' }}"
+                                                        LabelsChart="{{ DataChart|GetValueInDic:'Labels' }}">
+                                                </canvas>
+                                            </div>
+                                            <div class="InfoChartStateCourse">
+                                                today
+                                            </div>
+                                        </div>
+                                    {% endwith %}
+                                    {% with Teacher.GetDataChartVisitCourses_ThisMonth as DataChart %}
+                                        <div>
+                                            <div class="ContainerChart">
+                                                <canvas ChartLine UnitChart="visits"
+                                                        id="Chart_Course_ID_{{ Course.id }}"
+                                                        DataChart="{{ DataChart|GetValueInDic:'Values' }}"
+                                                        LabelsChart="{{ DataChart|GetValueInDic:'Labels' }}">
+                                                </canvas>
+                                            </div>
+                                            <div class="InfoChartStateCourse">
+                                                month
+                                            </div>
+                                        </div>
+                                    {% endwith %}
+                                    {% with Teacher.GetDataChartVisitCourses_ThisYear as DataChart %}
+                                        <div>
+                                            <div class="ContainerChart">
+                                                <canvas ChartLine UnitChart="visits"
+                                                        id="Chart_Course_ID_{{ Course.id }}"
+                                                        DataChart="{{ DataChart|GetValueInDic:'Values' }}"
+                                                        LabelsChart="{{ DataChart|GetValueInDic:'Labels' }}">
+                                                </canvas>
+                                            </div>
+                                            <div class="InfoChartStateCourse">
+                                                year
+                                            </div>
+                                        </div>
+                                    {% endwith %}
+                                </div>
+                            </div>
+                        {% endautoescape %}
+                    </div>
+                </div>
+                <div class="Container" Container ContainerLinked="Courses">
+                    <div class="ContainerTitle">
+                        <p>Courses</p>
+                    </div>
+                    <div class="CoursesActive">
+                        <div class="Courses">
+                            {% if Teacher.GetAllCourse|ListIsNone %}
+                                <div class="text-center p-2 bg-light">
+                                    <h6 class="text-dark m-0">No Course</h6>
+                                </div>
+                            {% endif %}
+                            {% for Course in Teacher.GetAllCourse %}
+                                <div class="Course">
+                                    <div>
+                                        <img src="{{ Course.Image.url }}" alt="{{ Course.Title }}"
+                                             ClickFunc="GoToUrl({{ Course.UrlViewCourse }})">
+                                        <div class="AboutCourse">
+                                            <div class="TitleCourse">
+                                                <a href="{{ Course.UrlViewCourse }}">
+                                                    <h5>{{ Course.Title|truncatechars:50 }}</h5>
+                                                </a>
+                                            </div>
+                                            <div class="InfoCourse">
+                                                <div>
+                                                    <div class="ContainerItemsInfoCourse">
+                                                        <div>
+                                                            <p class="Label">Last Time Update </p>
+                                                            <p class="ResultField">{{ Course.TimePastUpdated }}</p>
+                                                        </div>
+                                                        <div>
+                                                            <i class="fa fa-user"></i>
+                                                            <p>{{ Course.GetLenStudents }}</p>
+                                                        </div>
+                                                        <div>
+                                                            <i class="fa fa-video"></i>
+                                                            <p>{{ Course.GetVideoTime }}</p>
+                                                        </div>
+                                                        <div>
+                                                            <i class="fa fa-comment"></i>
+                                                            <p>{{ Course.GetLenComments }}</p>
+                                                        </div>
+                                                    </div>
+                                                    {% autoescape off %}
+                                                        {% with Course.GetDataChart_VisitsToday as DataChart %}
+                                                            <div class="ContainerChartStateCourseInfo">
+                                                                <div>
+                                                                    <canvas ChartLine UnitChart="visits"
+                                                                            id="Chart_Course_ID_{{ Course.id }}"
+                                                                            DataChart="{{ DataChart|GetValueInDic:'Values' }}"
+                                                                            LabelsChart="{{ DataChart|GetValueInDic:'Labels' }}">
+                                                                    </canvas>
+                                                                </div>
+                                                                <div class="InfoChartStateCourse">
+                                                                    Visit in Today
+                                                                    <i class="fa fa-eye"></i>
+                                                                </div>
+                                                            </div>
+                                                        {% endwith %}
+                                                    {% endautoescape %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="Container" Container ContainerLinked="CreateCourse">
+                    <div class="ContainerTitle">
+                        <p>Create Course</p>
+                    </div>
+                    <form action="/t/Panel/CreateCourse" method="post" class="ContainerForm"
+                          enctype="multipart/form-data"
+                          content="UTF-8"
+                          id="FormSubmitCourse">
+                        {% csrf_token %}
+                        <div class="ItemForm">
+                            <p class="LabelInput">
+                                Title Course :
+                            </p>
+                            <div class="ItemFormInput">
+                                <input type="text" placeholder="JavaScript Course" name="TitleCourse" InputForm
+                                       InputFormSubmitCourse Bigger="3" Less="200"
+                                       SetIn="Container">
+                            </div>
+                        </div>
+                        <div class="ItemForm">
+                            <p class="LabelInput">
+                                PreRequisites :
+                            </p>
+                            <div class="ItemFormInput">
+                                <input type="text" placeholder="Html & Css" name="PreRequisites" InputForm
+                                       InputFormSubmitCourse Bigger="0"
+                                       Less="200" SetIn="Container">
+                            </div>
+                        </div>
+                        <div class="ItemForm">
+                            <p class="LabelInput">
+                                References <span class="text-danger">(Please split with <b>" , "</b> )</span> :
+                            </p>
+                            <div class="ItemFormInput">
+                                <input type="text" placeholder="For Example : w3school.com , JavaScript.com "
+                                       name="References" InputForm InputFormSubmitCourse Bigger="0" Less="1000"
+                                       SetIn="Container">
+                            </div>
+                        </div>
+                        <div class="ItemForm">
+                            <p class="LabelInput">
+                                Picture :
+                            </p>
+                            <div class="ItemFormInput">
+                                <input type="file" name="Image" InputForm InputFormSubmitCourse
+                                       SetIn="Container" IdImageTag="ImageForSubmitCourse">
+                                <input type="hidden" name="StateImage" value="MostGet">
+                            </div>
+                            <div class="ContainerImageFormSubmitCourse">
+                                <img src="__None__" id="ImageForSubmitCourse" alt="">
+                            </div>
+                        </div>
+                        <div class="ItemForm">
+                            <p class="LabelInput">
+                                Price :
+                            </p>
+                            <div class="ItemFormInput">
+                                <input type="number" placeholder="0" name="Price" InputForm InputFormSubmitCourse
+                                       InputPriceFormSubmitCourse Bigger="0" Less="15"
+                                       SetIn="Container" TypeVal="Number">
+                            </div>
+                            <div class="PriceSubmitCourse">
+                                $
+                                <p id="PriceSubmitCourse" class="SplitNumber" Number="0"></p>
+                            </div>
+                        </div>
+                        <div class="ItemForm">
+                            <p class="LabelInput">Description :</p>
+                            <div class="ItemFormInput">
+                            <textarea name="Description" placeholder="This course is a great start for beginners"
+                                      rows="6" type="text" InputForm InputFormSubmitCourse SetIn="Container"
+                                      TypeVal="Text" Bigger="3" Less="5000"></textarea>
+                            </div>
+                        </div>
+                        <div class="ContainerButtonForm">
+                            <button class="BtnStyle_5 Disabled" type="button" id="ButtonFormSubmitCourse">Create Course
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="Container" Container ContainerLinked="Information">
+                    <div class="ContainerTitle">
+                        <p>Information</p>
+                    </div>
+                    <form action="/t/Panel/SubmitInformation" class="ContainerForm" enctype="multipart/form-data"
+                          content="UTF-8" method="post"
+                          id="FormInformation">
+                        {% csrf_token %}
+                        <div class="ItemForm">
+                            <p class="LabelInput">Name and Family :</p>
+                            <div class="ItemFormInput">
+                                <input type="text" name="NameAndFamily" InputForm InputFormInfo Bigger="3" Less="200"
+                                       SetIn="Icon" CheckInputVal
+                                       value="{{ Teacher.NameAndFamily|NoneVal:'' }}">
+                                <i class="far fa-times-circle"></i>
+                            </div>
+                        </div>
+                        <div class="ItemForm">
+                            <p class="LabelInput">Email :</p>
+                            <div class="ItemFormInput">
+                                <input type="text" name="Email" InputForm InputFormInfo Bigger="3" Less="65"
+                                       TypeVal="Email"
+                                       SetIn="Icon"
+                                       CheckInputVal value="{{ Teacher.Email|NoneVal:'' }}">
+                                <i class="far fa-times-circle"></i>
+                            </div>
+                        </div>
+                        <div class="ItemForm">
+                            <p class="LabelInput">Phone Number :</p>
+                            <div class="ItemFormInput">
+                                <input type="number" name="PhoneNumber" InputForm InputFormInfo Bigger="3" Less="20"
+                                       TypeVal="Number"
+                                       SetIn="Icon" CheckInputVal value="{{ Teacher.PhoneNumber|NoneVal:'' }}">
+                                <i class="far fa-times-circle"></i>
+                            </div>
+                        </div>
+                        <div class="ItemForm">
+                            <p class="LabelInput">About Me :</p>
+                            <div class="ItemFormInput">
+                            <textarea type="text" rows="5" name="AboutMe" InputForm InputFormInfo Bigger="2" Less="5000"
+                                      TypeVal="Text"
+                                      SetIn="Icon" CheckInputVal>{{ Teacher.AboutMe|NoneVal:'' }}</textarea>
+                                <i class="far fa-times-circle"></i>
+                            </div>
+                        </div>
+                        {% if Teacher.Image != '' %}
+                            <div class="ItemForm">
+                                <p class="LabelInput">Picture :</p>
+                                <div class="ItemFormInput">
+                                    <input type="file" name="Image" IdImageTag="ImageInformation"
+                                           accept="image/png, image/gif, image/jpeg" InputForm
+                                           InputFormInfo TypeVal="File"
+                                           SetIn="Icon" CheckInputVal State="Geted">
+                                    <input type="hidden" name="StateImage" value="Geted">
+                                    <i class="far fa-times-circle"></i>
+                                </div>
+                            </div>
+                            <div class="ContainerImageFormInformation">
+                                <img src="{{ Teacher.Image.url }}" alt="{{ Teacher.NameAndFamily }}"
+                                     id="ImageInformation">
+                            </div>
+                        {% else %}
+                            <div class="ItemForm">
+                                <p class="LabelInput">Picture :</p>
+                                <div class="ItemFormInput">
+                                    <input type="file" name="Image" IdImageTag="ImageInformation"
+                                           accept="image/png, image/gif, image/jpeg" InputForm
+                                           InputFormInfo TypeVal="File"
+                                           SetIn="Icon" CheckInputVal State="MostGet">
+                                    <input type="hidden" name="StateImage" value="MostGet">
+                                    <i class="far fa-times-circle"></i>
+                                </div>
+                            </div>
+                            <div class="ContainerImageFormInformation">
+                                <img src="__None__" alt="Picture" id="ImageInformation">
+                            </div>
+                        {% endif %}
+                        <div class="ContainerButtonForm">
+                            <button id="BtnSubmitInformation" type="button" class="BtnStyle_5 Disabled">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block Js %}
+    <script src="{% static 'Base/Js/Base/Chart/anychart-core.min.js' %}"></script>
+    <script src="{% static 'Base/Js/Base/Chart/Chart.js' %}"></script>
+    <script src="{% static 'Base/Js/Base/Chart/anychart-pie.min.js' %}"></script>
+    <script src="{% static 'Base/Js/Base/Chart/plugin-chart.js' %}"></script>
+    <script src="{% static 'js/Teacher/Panel/index.js' %}"></script>
+{% endblock %}
